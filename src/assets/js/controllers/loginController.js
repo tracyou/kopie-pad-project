@@ -29,22 +29,22 @@ class LoginController {
      * @param event
      */
     async handleLogin(event) {
-        //prevent actual submit and page refresh
+        // Prevent actual submit and page refresh.
         event.preventDefault();
 
-        //Find the username and password
+        // Find the username and password.
         const username = this.loginView.find("[name='username']").val();
         const password = this.loginView.find("[name='password']").val();
 
         try{
-            //await keyword 'stops' code until data is returned - can only be used in async function
+            // Await keyword 'stops' code until data is returned - can only be used in async function.
             const user = await this.userRepository.login(username, password);
 
             sessionManager.set("username", user.username);
             app.loadController(CONTROLLER_WELCOME);
 
         } catch(e) {
-            //if unauthorized error show error to user
+            // If unauthorized error show error to user.
             if(e.code === 401) {
                 this.loginView
                     .find(".error")
@@ -55,7 +55,7 @@ class LoginController {
         }
     }
 
-    //Called when the login.html failed to load
+    // Called when the login.html failed to load.
     error() {
         $(".content").html("Failed to load content!");
     }
