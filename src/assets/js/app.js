@@ -11,6 +11,7 @@ const CONTROLLER_SIDEBAR = "sidebar";
 const CONTROLLER_LOGIN = "login";
 const CONTROLLER_LOGOUT = "logout";
 const CONTROLLER_WELCOME = "welcome";
+const CONTROLLER_LANDINGSPAGE = "landingspage";
 
 const sessionManager = new SessionManager();
 const networkManager = new NetworkManager();
@@ -20,9 +21,9 @@ class App {
     init() {
         //Always load the sidebar
         this.loadController(CONTROLLER_SIDEBAR);
-
+        this.loadController(CONTROLLER_LANDINGSPAGE);
         //Attempt to load the controller from the URL, if it fails, fall back to the welcome controller.
-        this.loadControllerFromUrl(CONTROLLER_WELCOME);
+        //this.loadControllerFromUrl(CONTROLLER_LANDINGSPAGE);
     }
 
     /**
@@ -60,6 +61,10 @@ class App {
                 this.isLoggedIn(() => new WelcomeController, () => new LoginController());
                 break;
 
+            case CONTROLLER_LANDINGSPAGE:
+                this.setCurrentController(name);
+                this.isLoggedIn(() => new landingspageController(), () => new landingspageController());
+                break;
             default:
                 return false;
         }

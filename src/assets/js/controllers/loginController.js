@@ -8,7 +8,7 @@ class LoginController {
     constructor() {
         this.userRepository = new UserRepository();
 
-        $.get("views/login.html")
+        $.get('views/login.html')
             .done((data) => this.setup(data))
             .fail(() => this.error());
     }
