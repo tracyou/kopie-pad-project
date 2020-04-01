@@ -8,7 +8,7 @@ class LoginController {
     constructor() {
         this.userRepository = new UserRepository();
 
-        $.get("views/login.html")
+        $.get('views/login.html')
             .done((data) => this.setup(data))
             .fail(() => this.error());
     }
@@ -41,7 +41,7 @@ class LoginController {
             const user = await this.userRepository.login(username, password);
 
             sessionManager.set("username", user.username);
-            app.loadController(CONTROLLER_WELCOME);
+            app.loadController(CONTROLLER_LANDINGSPAGE);
 
         } catch(e) {
             //if unauthorized error show error to user
