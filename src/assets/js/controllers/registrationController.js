@@ -8,7 +8,7 @@ const con = mysql.createConnection({
     "database": "pad_bsc_6_dev"
 });
 
-function registration() {
+function registrationController() {
     const name = $("#name").val();
     const password1 = $("#password1").val();
     const password2 = $("#password2").val();
