@@ -63,6 +63,13 @@ app.post("/room_example", (req, res) => {
     );
 
 });
+
+// app.post("/user/registration", (req, res) => {
+//
+//     db.handleQuery(connectionPool, {
+//         query: "INSERT INTO user (username, password) VALUES ()";
+//     }
+// }
 //------- END ROUTES -------
 
 module.exports = app;
