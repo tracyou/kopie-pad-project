@@ -13,6 +13,7 @@ class landingspageController{
 
         //Set the name in the view from the session
         this.landingspageView.find(".name").html(sessionManager.get("username"));
+        this.landingspageView.find("#proceedbtn").on("click", registrationController);
 
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.landingspageView);

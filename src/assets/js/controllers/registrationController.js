@@ -19,8 +19,7 @@ class registrationController {
     setup(data) {
         this.registrationView = $(data);
 
-        this.registrationView.find("#registration")
-            // .("");
+        this.registrationView.find("#registration").on("");
 
         $(".content").empty().append(this.registrationView);
     }
