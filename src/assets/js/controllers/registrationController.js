@@ -19,7 +19,7 @@ class registrationController {
     setup(data) {
         this.registrationView = $(data);
 
-        this.registrationView.find(".container").on("submit", () => this.handleRegistration());
+        this.registrationView.find(".container").on("submit", (e) => this.handleRegistration(e));
 
         // this.handleRegistration();
 

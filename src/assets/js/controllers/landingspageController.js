@@ -11,7 +11,7 @@ class landingspageController{
         //Load the landingspage-content into memory
         this.landingspageView = $(data);
 
-        console.log(data);
+        // console.log(data);
         // console.log($(data).find(".proceedbtn"));
         // console.log(this.landingspageView.find(".proceedbtn"));
         // console.log(this.landingspageView.find(".proceedbtn").on("submit", app.loadController(CONTROLLER_REGISTRATION)));
@@ -20,8 +20,10 @@ class landingspageController{
         this.landingspageView.find(".name").html(sessionManager.get("username"));
 
         //Load registrationpage.html
-        this.landingspageView.find(".proceedbtn").on("click", app.loadController(CONTROLLER_REGISTRATION));
+        // this.landingspageView.find(".proceedbtn").on("click", app.loadController(CONTROLLER_REGISTRATION));
+        // this.landingspageView.on("click", ".proceedbtn", app.loadController(CONTROLLER_REGISTRATION));
 
+        this.landingspageView.on("click", ".proceedbtn", app.loadController(CONTROLLER_LOGIN));
 
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.landingspageView);
