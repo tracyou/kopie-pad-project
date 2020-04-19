@@ -23,8 +23,6 @@ class registrationController {
                 alert('Het registreren is gelukt!');
             }
         });
-a
-        // this.registrationView.find(".container").on("submit", (e) => this.handleRegistration(e));
 
 
         $(".content").empty().append(this.registrationView);
