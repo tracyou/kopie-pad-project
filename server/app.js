@@ -63,6 +63,13 @@ app.post("/room_example", (req, res) => {
     );
 
 });
+
+app.post("/user/registration", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    db.handleQuery(connectionPool)
+});
 //------- END ROUTES -------
 
 module.exports = app;

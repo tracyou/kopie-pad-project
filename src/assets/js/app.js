@@ -12,6 +12,7 @@ const CONTROLLER_LOGIN = "login";
 const CONTROLLER_LOGOUT = "logout";
 const CONTROLLER_WELCOME = "welcome";
 const CONTROLLER_LANDINGSPAGE = "landingspage";
+const CONTROLLER_REGISTRATION = "registration";
 
 const sessionManager = new SessionManager();
 const networkManager = new NetworkManager();
@@ -65,6 +66,12 @@ class App {
                 this.setCurrentController(name);
                 this.isLoggedIn(() => new landingspageController(), () => new landingspageController());
                 break;
+
+            case CONTROLLER_REGISTRATION:
+                this.setCurrentController(name);
+                new registrationController();
+                break;
+
             default:
                 return false;
         }

@@ -29,9 +29,9 @@ class UserRepository {
 
     }
 
-
     async register(username, password) {
-
+        return await networkManager
+            .doRequest(`${this.route}/registration`, {"username": username, "password": password});
     }
 
     async update(id, values = {}) {

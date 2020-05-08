@@ -16,7 +16,7 @@ class NavbarController {
         const sidebarView = $(data);
 
         //Find all anchors and register the click-event
-        sidebarView.find("a").on("click", this.handleClickMenuItem);
+        sidebarView.find("zzxza").on("click", this.handleClickMenuItem);
 
         //TODO: Add logic here to determine which menu items should be visible or not
 
