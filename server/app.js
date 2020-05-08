@@ -68,9 +68,20 @@ app.post("/user/registration", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    db.handleQuery(connectionPool)
-});
-//------- END ROUTES -------
+    db.handleQuery(connectionPool, {
+        query: "INSERT INTO user (username, password) VALUES username = ? AND password = ?",
+        values: [username, password]
+    }, (data) => {
+        if (data.length === 1) {
+            //return just the username for now, never send password back!
+            res.status(httpOkCode).json({"username": data[0].username});
+        } else {
+            //wrong username
+            res.status(authorizationErrCode).json({reason: "Wrong username or password"});
+        }
 
+    }, (err) => res.status(badRequestCode).json({reason: err}));
+//------- END ROUTES -------
+});
 module.exports = app;
 
