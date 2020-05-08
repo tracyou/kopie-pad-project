@@ -1,4 +1,3 @@
-
 class landingspageController{
     constructor(){
 
@@ -12,13 +11,13 @@ class landingspageController{
         this.landingspageView = $(data);
 
         //Set the name in the view from the session
-        this.landingspageView.find(".name").html(sessionManager.get("username"));
+        // this.landingspageView.find(".name").html(sessionManager.get("username"));
 
         //Load registrationpage-content
-        const button = this.landingspageView.find("button");
-        $(button).click(function(){
-            app.loadController(CONTROLLER_ADD);
-        });
+        // const button = this.landingspageView.find("button");
+        // $(button).click(function(){
+        app.loadController(CONTROLLER_ADD);
+        // });
 
         // this.landingspageView.find("button").on("onclick", app.loadController(CONTROLLER_REGISTRATION));
 
