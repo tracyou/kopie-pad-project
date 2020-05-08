@@ -13,6 +13,7 @@ const CONTROLLER_LOGOUT = "logout";
 const CONTROLLER_WELCOME = "welcome";
 const CONTROLLER_LANDINGSPAGE = "landingspage";
 const CONTROLLER_REGISTRATION = "registration";
+const CONTROLLER_ADD = "add contact";
 
 const sessionManager = new SessionManager();
 const networkManager = new NetworkManager();
@@ -70,6 +71,11 @@ class App {
             case CONTROLLER_REGISTRATION:
                 this.setCurrentController(name);
                 new registrationController();
+                break;
+
+            case CONTROLLER_ADD:
+                this.setCurrentController(name);
+                this.isLoggedIn(() => new contactAddController(), () => new landingspageController());
                 break;
 
             default:
