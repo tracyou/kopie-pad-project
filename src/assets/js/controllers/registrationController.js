@@ -27,4 +27,8 @@ class registrationController {
 
         $(".content").empty().append(this.registrationView);
     }
+
+    error() {
+        $(".content").html("Failed to load the change contact page!");
+    }
 }
