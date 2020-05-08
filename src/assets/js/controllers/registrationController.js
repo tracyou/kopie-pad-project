@@ -1,10 +1,12 @@
 class registrationController {
     constructor() {
+        this.registerRepository = new registerRepository();
+
         $.get("views/registration.html")
             .done((data) => this.setup(data))
             .fail(() => this.error());
 
-        this.registerRepository = new registerRepository();
+
     }
 
     setup(data) {

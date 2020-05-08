@@ -6,6 +6,7 @@ class registerRepository {
 
     async register(username, password) {
         return await networkManager
-            .doRequest(`${this.route}/registration`, {"username": username, "password": password});
+            .doRequest(`${this.route}`, {"username": username, "password": password});
     }
+
 }
