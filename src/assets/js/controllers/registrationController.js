@@ -15,7 +15,7 @@ class registrationController {
             const password1 = $("#password1").val();
             const password2 = $("#password2").val();
 
-            if (name.length == 0 || password1.length == 0 || password2.length == 0){
+            if (name.length === 0 || password1.length === 0 || password2.length === 0){
                 alert('U heeft niet alle velden ingevuld!');
             }else if (password1 !== password2){
                 alert('De wachtwoorden die u heeft ingevuld komen niet overeen!');

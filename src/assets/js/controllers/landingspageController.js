@@ -15,10 +15,11 @@ class landingspageController{
         this.landingspageView.find(".name").html(sessionManager.get("username"));
 
         //Load registrationpage-content
-        const button = this.landingspageView.find("button");
-        $(button).click(function(){
+        // const button = this.landingspageView.find("button");
+        // $(button).click(function(){
             app.loadController(CONTROLLER_REGISTRATION);
-        });
+        // });
+
         // this.landingspageView.find("button").on("onclick", app.loadController(CONTROLLER_REGISTRATION));
 
         //Empty the content-div and add the resulting view to the page
