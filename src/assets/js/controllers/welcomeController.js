@@ -18,6 +18,8 @@ class WelcomeController {
         //Load the welcome-content into memory
         this.welcomeView = $(data);
 
+        this.welcomeView.find("a").on("click", () => this.logout(event));
+
         //Set the name in the view from the session
         this.welcomeView.find(".name").html(sessionManager.get("username"));
 
@@ -44,6 +46,12 @@ class WelcomeController {
             //for now just show every error on page, normally not all errors are appropriate for user
             exampleResponse.text(e);
         }
+    }
+
+    async logout(event) {
+        event.preventDefault();
+
+        app.loadController(CONTROLLER_LOGOUT);
     }
 
     //Called when the login.html fails to load
