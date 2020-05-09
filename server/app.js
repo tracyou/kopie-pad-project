@@ -54,7 +54,7 @@ app.post("/user/login", (req, res) => {
 app.post("/room_example", (req, res) => {
 
     db.handleQuery(connectionPool, {
-            query: "SELECT id, surface FROM room_example WHERE id = ?",
+            query: "SELECT id, username FROM user WHERE id = ?",
             values: [req.body.id]
         }, (data) => {
             //just give all data back as json
@@ -65,22 +65,39 @@ app.post("/room_example", (req, res) => {
 });
 
 app.post("/user/registration", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
 
     db.handleQuery(connectionPool, {
-        query: "INSERT INTO user (username, password) VALUES username = ? AND password = ?",
-        values: [username, password]
-    }, (data) => {
-        if (data.length === 1) {
-            //return just the username for now, never send password back!
-            res.status(httpOkCode).json({"username": data[0].username});
-        } else {
-            //wrong username
-            res.status(authorizationErrCode).json({reason: "Wrong username or password"});
-        }
+            // select count(*) id from user;
+            query: "SELECT COUNT(*) id FROM user",
+        }, (data) => {
+            //just give all data back as json
+            console.log(data);
+            res.status(httpOkCode).json(data);
 
-    }, (err) => res.status(badRequestCode).json({reason: err}));
+            const id = data + 1;
+            const username = req.body.username;
+            const password = req.body.password;
+
+            db.handleQuery(connectionPool, {
+                query: "INSERT INTO user (id, username, password) VALUES id = ?, username = ? AND password = ?",
+                values: [id, username, password]
+            }, (data) => {
+                if (data.length === 1) {
+                    //return just the username for now, never send password back!
+                    // res.status(httpOkCode).json({"username": data[0].username});
+                    res.status(httpOkCode).json(data);
+                    console.log("Regitration went wright")
+                } else {
+                    //wrong username
+                    res.status(authorizationErrCode).json({reason: "Regitration went wrong"});
+                }
+
+            }, (err) => res.status(badRequestCode).json({reason: err}));
+
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+
+
 //------- END ROUTES -------
 });
 module.exports = app;

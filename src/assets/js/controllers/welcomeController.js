@@ -26,7 +26,7 @@ class WelcomeController {
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.welcomeView);
 
-        this.fetchRooms(1256);
+        this.fetchRooms(1);
     }
 
     /**
