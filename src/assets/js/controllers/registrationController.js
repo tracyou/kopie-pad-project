@@ -31,20 +31,20 @@ class registrationController {
             alert('De wachtwoorden die u heeft ingevuld komen niet overeen!');
         } else {
             alert('Het registreren is gelukt!');
-        }
 
-        try {
-            const user = await this.registerRepository.register(name, password1);
+            try {
+                await this.registerRepository.register(name, password1);
 
-            // sessionManager.set("username", user.name);
-        } catch (e) {
-            // If unauthorized error show error to user.
-            if (e.code === 401) {
-                this.registration
-                    .find(".error")
-                    .html(e.reason);
-            } else {
-                console.log(e);
+                // sessionManager.set("username", user.name);
+            } catch (e) {
+                // If unauthorized error show error to user.
+                if (e.code === 401) {
+                    this.registration
+                        .find(".error")
+                        .html(e.reason);
+                } else {
+                    console.log(e);
+                }
             }
         }
     }
