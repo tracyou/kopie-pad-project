@@ -15,7 +15,7 @@ function registration() {
 
     if (password1 !== password2){
         alert('De wachtwoorden die u heeft ingevuld komen niet overeen!');
-    }else if (name.length == 0 || password1.length == 0 || password2.length == 0){
+    }else if (name.length === 0 || password1.length === 0 || password2.length === 0){
         alert('U heeft niet alle velden ingevuld!');
     }else {
         con.connect(function(err) {
