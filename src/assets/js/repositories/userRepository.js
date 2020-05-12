@@ -30,10 +30,6 @@ class UserRepository {
     }
 
 
-    async register(username, password) {
-
-    }
-
     async update(id, values = {}) {
 
     }

@@ -12,6 +12,8 @@ const CONTROLLER_LOGIN = "login";
 const CONTROLLER_LOGOUT = "logout";
 const CONTROLLER_WELCOME = "welcome";
 const CONTROLLER_LANDINGSPAGE = "landingspage";
+const CONTROLLER_REGISTRATION = "registration";
+const CONTROLLER_ADD = "contactAdd";
 
 const sessionManager = new SessionManager();
 const networkManager = new NetworkManager();
@@ -65,6 +67,18 @@ class App {
                 this.setCurrentController(name);
                 this.isLoggedIn(() => new landingspageController(), () => new LoginController());
                 break;
+
+            case CONTROLLER_REGISTRATION:
+                this.setCurrentController(name);
+                new registrationController();
+                break;
+
+            case CONTROLLER_ADD:
+                this.setCurrentController(name);
+                new contactAddController();
+                // this.isLoggedIn(() => new contactAddController(), () => new landingspageController());
+                break;
+
             default:
                 return false;
         }

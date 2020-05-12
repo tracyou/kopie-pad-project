@@ -31,9 +31,7 @@ const authorizationErrCode = 401;
 
 app.post("/user/login", (req, res) => {
     const username = req.body.username;
-
-    //TODO: We shouldn't save a password unencrypted!! Improve this by using cryptoHelper :)
-    const password = req.body.password;
+    const password = cryptoHelper.getHashedPassword(req.body.password);
 
     db.handleQuery(connectionPool, {
         query: "SELECT username, password FROM user WHERE username = ? AND password = ?",
@@ -54,7 +52,7 @@ app.post("/user/login", (req, res) => {
 app.post("/room_example", (req, res) => {
 
     db.handleQuery(connectionPool, {
-            query: "SELECT id, surface FROM room_example WHERE id = ?",
+            query: "SELECT id, username FROM user WHERE id = ?",
             values: [req.body.id]
         }, (data) => {
             //just give all data back as json
@@ -63,7 +61,31 @@ app.post("/room_example", (req, res) => {
     );
 
 });
-//------- END ROUTES -------
 
+app.post("/user/registration", (req, res) => {
+    const username = req.body.username;
+    const password = cryptoHelper.getHashedPassword(req.body.password);
+
+    db.handleQuery(connectionPool, {
+            query: "INSERT INTO user (username, password) VALUES (?,?)",
+            values: [username, password]
+        }, (data) => {
+            if (data.length === 1) {
+                //return just the username for now, never send password back!
+                // res.status(httpOkCode).json({"username": data[0].username});
+                res.status(httpOkCode).json(data);
+                console.log("Regitration went wright")
+            } else {
+                //wrong username
+                res.status(authorizationErrCode).json({reason: "Regitration went wrong"});
+            }
+
+
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+
+
+//------- END ROUTES -------
+});
 module.exports = app;
 
