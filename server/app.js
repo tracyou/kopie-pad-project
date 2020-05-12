@@ -74,7 +74,7 @@ app.post("/user/registration", (req, res) => {
                 //return just the username for now, never send password back!
                 // res.status(httpOkCode).json({"username": data[0].username});
                 res.status(httpOkCode).json(data);
-                console.log("Regitration went wright")
+                console.log("Registration went wright")
             } else {
                 //wrong username
                 res.status(authorizationErrCode).json({reason: "Regitration went wrong"});
