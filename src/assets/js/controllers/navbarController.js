@@ -34,7 +34,7 @@ class NavbarController {
         //Return false to prevent reloading the page
         return false;
     }
-
+r
     //Called when the login.html failed to load
     error() {
         $(".content").html("Failed to load the sidebar!");
