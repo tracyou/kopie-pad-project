@@ -1,0 +1,3 @@
+constructor() {
+    this.route = "/user"
+}
