@@ -51,7 +51,7 @@ class WelcomeController {
     async logout(event) {
         event.preventDefault();
 
-        app.loadController(CONTROLLER_LOGOUT);
+        app.handleLogout();
     }
 
     //Called when the login.html fails to load
