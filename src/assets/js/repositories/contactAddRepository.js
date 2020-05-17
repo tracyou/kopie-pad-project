@@ -4,7 +4,9 @@ class contactAddRepository {
         this.route = "/contact"
     }
 
-    async login(username, password) {
+    async add(contactName, contactResidence, contactDescription,
+    contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
+    contactQualityDriver) {
         return await networkManager
             .doRequest(`${this.route}`, {"contactName": contactName, "contactResidence" : contactResidence,
             "contactDescription" : contactDescription, "contactPhoneNumber":contactPhoneNumber,
