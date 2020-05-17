@@ -22,10 +22,10 @@ class contactAddController {
         const contactResidence = this.contactToevoegenView.find("#exampleWoonplaats").val();
         const contactDescription = this.contactToevoegenView.find("#exampleOmschrijving").val();
         const contactPhoneNumber = this.contactToevoegenView.find("#exampleTelefoonnummer").val();
-        const contactQualityMedical = this.contactToevoegenView.find("#exampleCheck1").val();
-        const contactQualityComputer = this.contactToevoegenView.find("#exampleCheck2").val();
-        const contactQualitySocial = this.contactToevoegenView.find("#exampleCheck3").val();
-        const contactQualityDriver = this.contactToevoegenView.find("#exampleCheck4").val();
+        const contactQualityMedical = $("#exampleCheck1").is(':checked') ? 1:0 ;
+        const contactQualityComputer = $("#exampleCheck2").is(':checked') ? 1:0 ;
+        const contactQualitySocial = $("#exampleCheck3").is(':checked') ? 1:0 ;
+        const contactQualityDriver = $("#exampleCheck4").is(':checked') ? 1:0 ;
 
         if (contactName.length === 0 || contactResidence.length === 0 ||
             contactDescription.length === 0 || contactPhoneNumber.length === 0) {
@@ -36,10 +36,10 @@ class contactAddController {
             console.log(contactDescription);
             console.log(contactPhoneNumber);
 
-            console.log(contactQualityDriver);
-            console.log(contactQualitySocial);
-            console.log(contactQualityComputer);
             console.log(contactQualityMedical);
+            console.log(contactQualityComputer);
+            console.log(contactQualitySocial);
+            console.log(contactQualityDriver);
 
             try {
                 await this.contactAddRepository.add(contactName, contactResidence, contactDescription,

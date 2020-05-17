@@ -71,7 +71,7 @@ app.post("/user/registration", (req, res) => {
     db.handleQuery(connectionPool)
 });
 
-app.post("contactAdd", (req, res) => {
+app.post("/contact", (req, res) => {
     const contactName = req.body.contactName;
     const contactResidence = req.body.contactResidence;
     const contactDescription = req.body.contactDescription;
@@ -84,10 +84,10 @@ app.post("contactAdd", (req, res) => {
     db.handleQuery(connectionPool, {
             query: "INSERT INTO contact (Name, Residence, TelephoneNr, canDrive, canMeet, Medical, Computer, Description) VALUES (?,?,?,?,?,?,?,?)",
             values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer,contactDescription]
-    }, (data) => {
-        //just give all data back as json
-        res.status(httpOkCode).json(data);
-    }, (err) => res.status(badRequestCode).json({reason: err})
+        }, (data) => {
+            //just give all data back as json
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
     );
 });
 
