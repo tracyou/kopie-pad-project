@@ -9,7 +9,6 @@ class landingspageController{
     setup(data) {
         //Load the landingspage-content into memory
         this.landingspageView = $(data);
-        // app.loadController()
 
         //Set the name in the view from the session
         // this.landingspageView.find(".name").html(sessionManager.get("username"));
@@ -20,7 +19,7 @@ class landingspageController{
         app.loadController(CONTROLLER_ADD);
         // });
 
-        this.landingspageView.find("button").on("click", ()=>app.loadController(CONTROLLER_REGISTRATION));
+        // this.landingspageView.find("button").on("onclick", app.loadController(CONTROLLER_REGISTRATION));
 
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.landingspageView);
