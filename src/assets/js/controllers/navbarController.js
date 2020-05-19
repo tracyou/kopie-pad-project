@@ -15,8 +15,8 @@ class NavbarController {
         //Load the sidebar-content into memory
         const sidebarView = $(data);
 
-        //Find all anchors and register the click-event
-        sidebarView.find("zzxza").on("click", this.handleClickMenuItem);
+        // Find all anchors and register the click-event
+        sidebarView.find(".dropdown-item").on("click", () => this.handleClickMenuItem);
 
         //TODO: Add logic here to determine which menu items should be visible or not
 
@@ -34,7 +34,7 @@ class NavbarController {
         //Return false to prevent reloading the page
         return false;
     }
-
+r
     //Called when the login.html failed to load
     error() {
         $(".content").html("Failed to load the sidebar!");

@@ -65,7 +65,7 @@ class App {
 
             case CONTROLLER_LANDINGSPAGE:
                 this.setCurrentController(name);
-                this.isLoggedIn(() => new landingspageController(), () => new landingspageController());
+                this.isLoggedIn(() => new landingspageController(), () => new LoginController());
                 break;
 
             case CONTROLLER_REGISTRATION:
