@@ -25,7 +25,7 @@ class App {
         this.loadController(CONTROLLER_SIDEBAR);
         this.loadController(CONTROLLER_LANDINGSPAGE);
         //Attempt to load the controller from the URL, if it fails, fall back to the welcome controller.
-        // this.loadControllerFromUrl(CONTROLLER_WELCOME);
+        this.loadControllerFromUrl(CONTROLLER_WELCOME);
     }
 
     /**
@@ -65,7 +65,7 @@ class App {
 
             case CONTROLLER_LANDINGSPAGE:
                 this.setCurrentController(name);
-                this.isLoggedIn(() => new landingspageController(), () => new LoginController());
+                this.isLoggedIn(() => new landingspageController(), () => new landingspageController());
                 break;
 
             case CONTROLLER_REGISTRATION:
