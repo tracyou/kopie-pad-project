@@ -6,7 +6,6 @@ class registrationController {
             .done((data) => this.setup(data))
             .fail(() => this.error());
 
-
     }
 
     setup(data) {
