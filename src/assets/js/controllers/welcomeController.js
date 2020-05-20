@@ -21,12 +21,12 @@ class WelcomeController {
         this.welcomeView.find("a").on("click", () => this.logout(event));
 
         //Set the name in the view from the session
-        this.welcomeView.find(".name").html(sessionManager.get("username"));
+        this.welcomeView.find("#name").html("Welkom " + sessionManager.get("username"));
 
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.welcomeView);
 
-        this.fetchRooms(1);
+        // this.fetchRooms();
     }
 
     /**
@@ -53,6 +53,8 @@ class WelcomeController {
 
         app.handleLogout();
     }
+
+
 
     //Called when the login.html fails to load
     error() {

@@ -39,11 +39,11 @@ class NavbarController {
         // const controller = $(this.navbar.find("a")).attr("data-controller");
 
         // const controller = $(".dropdown-item").each($(".dropdown-item").attr("data-controller"));
-        const controller = $("#dropdownMenu a").attr("data-controller");
-
-        console.log($("#dropdownMenu"));
-        console.log($("#dropdownMenu a"));
-        console.log($("#dropdownMenu a").attr("data-controller"));
+        // const controller = $("#dropdownMenu a").attr("data-controller");
+        //
+        // console.log($("#dropdownMenu"));
+        // console.log($("#dropdownMenu a"));
+        // console.log($("#dropdownMenu a").attr("data-controller"));
         //
         // console.log($("#dropdownMenu a")[0].attr("data-controller");
         // console.log($("#dropdownMenu a")[1].attr("data-controller");

@@ -19,7 +19,7 @@ class landingspageController{
         const button = this.landingspageView.find("button");
         // $(button).click(function(){
         //     app.loadController(CONTROLLER_REGISTRATION);
-        //     app.loadController(CONTROLLER_LOGIN);
+            app.loadController(CONTROLLER_LOGIN);
         // });
 
         this.landingspageView.find("button").on("click", ()=>app.loadController(CONTROLLER_REGISTRATION));

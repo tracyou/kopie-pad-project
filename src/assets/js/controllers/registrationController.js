@@ -34,7 +34,7 @@ class registrationController {
             try {
                 await this.registerRepository.register(name, password1);
 
-                // sessionManager.set("username", user.name);
+                sessionManager.set("username", name);
             } catch (e) {
                 // If unauthorized error show error to user.
                 if (e.code === 401) {
