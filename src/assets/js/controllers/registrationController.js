@@ -51,5 +51,4 @@ class registrationController {
     error() {
         $(".content").html("Failed to load the change contact page!");
     }
-
 }
