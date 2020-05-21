@@ -33,20 +33,20 @@ class WelcomeController {
      * async function that retrieves a kamer by its id via repository
      * @param roomId the room id to retrieve
      */
-    async fetchRooms(roomId) {
-        const exampleResponse = this.welcomeView.find(".example-response");
-        try {
-            //await keyword 'stops' code until data is returned - can only be used in async function
-            const roomData = await this.roomExampleRepository.get(roomId);
-
-            exampleResponse.text(JSON.stringify(roomData, null, 4));
-        } catch (e) {
-            console.log("error while fetching rooms", e);
-
-            //for now just show every error on page, normally not all errors are appropriate for user
-            exampleResponse.text(e);
-        }
-    }
+    // async fetchRooms(roomId) {
+    //     const exampleResponse = this.welcomeView.find(".example-response");
+    //     try {
+    //         //await keyword 'stops' code until data is returned - can only be used in async function
+    //         const roomData = await this.roomExampleRepository.get(roomId);
+    //
+    //         exampleResponse.text(JSON.stringify(roomData, null, 4));
+    //     } catch (e) {
+    //         console.log("error while fetching rooms", e);
+    //
+    //         //for now just show every error on page, normally not all errors are appropriate for user
+    //         exampleResponse.text(e);
+    //     }
+    // }
 
     async logout(event) {
         event.preventDefault();

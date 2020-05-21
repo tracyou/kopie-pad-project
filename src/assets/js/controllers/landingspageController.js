@@ -17,12 +17,11 @@ class landingspageController{
         //Load registrationpage-content
         // const button = this.landingspageView.find("button");
         // $(button).click(function(){
-<<<<<<< HEAD
         //     app.loadController(CONTROLLER_REGISTRATION);
             app.loadController(CONTROLLER_LOGIN);
-=======
-        app.loadController(CONTROLLER_ADD);
->>>>>>> 3b55b741a8d5b012e0962f069ec5c7acaa73b9cb
+
+        // app.loadController(CONTROLLER_ADD);
+
         // });
 
         this.landingspageView.find("button").on("click", ()=>app.loadController(CONTROLLER_REGISTRATION));

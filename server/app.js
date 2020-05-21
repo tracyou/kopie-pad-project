@@ -107,9 +107,5 @@ app.post("/contact", (req, res) => {
 
         }, (err) => res.status(badRequestCode).json({reason: err})
     );
-
-
-//------- END ROUTES -------
-});
 module.exports = app;
 

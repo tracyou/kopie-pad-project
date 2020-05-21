@@ -131,6 +131,7 @@ class App {
 
         //go to login screen
         this.loadController(CONTROLLER_LOGIN);
+        this.loadController(CONTROLLER_SIDEBAR);
     }
 }
 
