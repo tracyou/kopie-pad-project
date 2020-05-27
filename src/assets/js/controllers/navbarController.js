@@ -29,7 +29,9 @@ class NavbarController {
 
 
         // Find all anchors and register the click-event
-        this.navbar.find("dropdownMenu").on("click", () => this.handleClickMenuItem());
+        // this.navbar.find("#dropdownMenu").on("click", () => this.handleClickMenuItem);
+
+        this.navbar.find(".dropdown-item").on("click", this.handleClickMenuItem);
 
         //TODO: Add logic here to determine which menu items should be visible or not
 
@@ -40,18 +42,13 @@ class NavbarController {
 
     handleClickMenuItem() {
         // Get the data-controller from the clicked element (this)
-        const controller = $(this.navbar.find(".dropdown-item")).attr("data-controller");
+        const controller = $(this).attr("data-controller");
 
-        // console.log($("#dropdownMenu a")[0].attr("data-controller");
-        // console.log($("#dropdownMenu option:selected"));
+        console.log(controller);
 
+        //Pass the action to a new function for further processing
+        app.loadController(controller);
 
-        console.log("Er is geklikt op " + controller);
-        // console.log("Er is geklikt");
-
-        // //Pass the action to a new function for further processing
-        // app.loadController(controller);
-        //
         // //Return false to prevent reloading the page
         return false;
     }

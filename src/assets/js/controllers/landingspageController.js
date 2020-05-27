@@ -9,20 +9,6 @@ class landingspageController{
     setup(data) {
         //Load the landingspage-content into memory
         this.landingspageView = $(data);
-        // app.loadController()
-
-        //Set the name in the view from the session
-        // this.landingspageView.find(".name").html(sessionManager.get("username"));
-
-        //Load registrationpage-content
-        // const button = this.landingspageView.find("button");
-        // $(button).click(function(){
-        //     app.loadController(CONTROLLER_REGISTRATION);
-            app.loadController(CONTROLLER_LOGIN);
-
-        // app.loadController(CONTROLLER_ADD);
-
-        // });
 
         this.landingspageView.find("button").on("click", ()=>app.loadController(CONTROLLER_REGISTRATION));
 
