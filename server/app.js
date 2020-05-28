@@ -103,13 +103,9 @@ app.post("/contact", (req, res) => {
     );
 });
 
-//------- END ROUTES -------
 
         }, (err) => res.status(badRequestCode).json({reason: err})
     );
 
-
-//------- END ROUTES -------
-});
 module.exports = app;
 
