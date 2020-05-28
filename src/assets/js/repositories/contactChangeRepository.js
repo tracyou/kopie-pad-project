@@ -1,15 +1,15 @@
-class contactAddRepository {
+class contactChangeRepository {
 
     constructor() {
-        this.route = "/contactAdd"
+        this.route = "/contactChange"
     }
 
     async add(contactName, contactResidence, contactDescription,
-    contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-    contactQualityDriver) {
+              contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
+              contactQualityDriver) {
         return await networkManager
             .doRequest(`${this.route}`, {"contactName": contactName, "contactResidence" : contactResidence,
-            "contactDescription" : contactDescription, "contactPhoneNumber":contactPhoneNumber,
+                "contactDescription" : contactDescription, "contactPhoneNumber":contactPhoneNumber,
                 "contactQualityMedical": contactQualityMedical, "contactQualityComputer": contactQualityComputer,
                 "contactQualitySocial": contactQualitySocial, "contactQualityDriver": contactQualityDriver,});
     }

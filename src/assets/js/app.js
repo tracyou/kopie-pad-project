@@ -14,6 +14,7 @@ const CONTROLLER_WELCOME = "welcome";
 const CONTROLLER_LANDINGSPAGE = "landingspage";
 const CONTROLLER_REGISTRATION = "registration";
 const CONTROLLER_ADD = "contactAdd";
+const CONTROLLER_CHANGE ="contactChange";
 
 const sessionManager = new SessionManager();
 const networkManager = new NetworkManager();
@@ -76,6 +77,11 @@ class App {
             case CONTROLLER_ADD:
                 this.setCurrentController(name);
                 new contactAddController();
+                // this.isLoggedIn(() => new contactAddController(), () => new landingspageController());
+                break;
+            case CONTROLLER_CHANGE:
+                this.setCurrentController(name);
+                new contactChangeController();
                 // this.isLoggedIn(() => new contactAddController(), () => new landingspageController());
                 break;
 
