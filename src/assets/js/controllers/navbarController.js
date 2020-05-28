@@ -16,16 +16,22 @@ class NavbarController {
         //Load the sidebar-content into memory
         this.navbar = $(data);
 
-        // this.navbar.find("#login").hide() && this.navbar.find("#loginDivider").hide();
-
-        app.isLoggedIn(() => console.log("ingelogd"),
-            () => console.log("uigelogd"));
+        app.isLoggedIn(() =>
+            this.navbar.find("#login").hide() &&
+            this.navbar.find("#loginRegistrationDivider").hide() &&
+            this.navbar.find("#registration").hide() &&
+            this.navbar.find("#registrationHelpDivider").hide(),
+            () =>
+                this.navbar.find("#helpContactsDivider").hide() &&
+                this.navbar.find("#contacts").hide() &&
+                this.navbar.find("#contactsLogoutDivider").hide() &&
+                this.navbar.find("#logout").hide());
 
 
         // Find all anchors and register the click-event
-        this.navbar.find(".dropdown-item").on("click", () => this.handleClickMenuItem());
+        // this.navbar.find("#dropdownMenu").on("click", () => this.handleClickMenuItem);
 
-        // this.navbar.find("#dropdownMenu").on("click", () => this.check());
+        this.navbar.find(".dropdown-item").on("click", this.handleClickMenuItem);
 
         //TODO: Add logic here to determine which menu items should be visible or not
 
@@ -36,34 +42,13 @@ class NavbarController {
 
     handleClickMenuItem() {
         // Get the data-controller from the clicked element (this)
-        // const controller = $(this.navbar.find("a")).attr("data-controller");
+        const controller = $(this).attr("data-controller");
 
-        // const controller = $(".dropdown-item").each($(".dropdown-item").attr("data-controller"));
-        const controller = $("#dropdownMenu a").attr("data-controller");
+        console.log(controller);
 
-        console.log($("#dropdownMenu"));
-        console.log($("#dropdownMenu a"));
-        console.log($("#dropdownMenu a").attr("data-controller"));
-        //
-        // console.log($("#dropdownMenu a")[0].attr("data-controller");
-        // console.log($("#dropdownMenu a")[1].attr("data-controller");
-        // console.log($("#dropdownMenu a")[2].attr("data-controller");
-        // console.log($("#dropdownMenu a")[3].attr("data-controller");
-        // console.log($("#dropdownMenu option:selected"));
-        // console.log($("#dropdownMenu option:selected").value);
-        // console.log($("#dropdownMenu option:selected").attr("id"));
-        // console.log($("#dropdownMenu option:selected").data("id"));
-        // console.log($("#dropdownMenu option").attr("id"));
+        //Pass the action to a new function for further processing
+        app.loadController(controller);
 
-
-        // console.log("Er is geklikt op " + controller);
-        console.log("Er is geklikt");
-
-
-        //
-        // //Pass the action to a new function for further processing
-        // app.loadController(controller);
-        //
         // //Return false to prevent reloading the page
         return false;
     }

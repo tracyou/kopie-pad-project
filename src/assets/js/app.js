@@ -22,7 +22,7 @@ class App {
 
     init() {
         //Always load the sidebar
-        this.loadController(CONTROLLER_SIDEBAR);
+        this.loadController(CONTROLLER_SIDEBAR); 
         this.loadController(CONTROLLER_LANDINGSPAGE);
         //Attempt to load the controller from the URL, if it fails, fall back to the welcome controller.
         // this.loadControllerFromUrl(CONTROLLER_WELCOME);
@@ -50,7 +50,8 @@ class App {
 
             case CONTROLLER_LOGIN:
                 this.setCurrentController(name);
-                this.isLoggedIn(() => new WelcomeController(), () => new LoginController());
+                new LoginController();
+                // this.isLoggedIn(() => new WelcomeController(), () => new LoginController());
                 break;
 
             case CONTROLLER_LOGOUT:
@@ -60,12 +61,14 @@ class App {
 
             case CONTROLLER_WELCOME:
                 this.setCurrentController(name);
-                this.isLoggedIn(() => new WelcomeController, () => new LoginController());
+                new WelcomeController();
+                // this.isLoggedIn(() => new WelcomeController, () => new LoginController());
                 break;
 
             case CONTROLLER_LANDINGSPAGE:
                 this.setCurrentController(name);
-                this.isLoggedIn(() => new landingspageController(), () => new LoginController());
+                // this.isLoggedIn(() => new landingspageController(), () => new LoginController());
+                new landingspageController();
                 break;
 
             case CONTROLLER_REGISTRATION:
@@ -131,6 +134,7 @@ class App {
 
         //go to login screen
         this.loadController(CONTROLLER_LOGIN);
+        this.loadController(CONTROLLER_SIDEBAR);
     }
 }
 

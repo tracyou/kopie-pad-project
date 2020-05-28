@@ -1,21 +1,31 @@
 <div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-10 rounded-lg" style="background-color: lightgray">
-            <div class="card-body">
-                <h2 >Registreren</h2>
-            </div>
-            <div class="card-body" id="registration">
-                <label class="col-6">Gebruikersnaam</label>
-                <input class="col-4" id="name" name="username"/>
-                <label class="col-6">Wachtwoord</label>
-                <input class="col-4" type="password" id="password1" name="password1"/>
-                <label class="col-6">Bevestig Wachtwoord</label>
-                <input class="col-4" type="password" id="password2" name="password2"/>
-            </div>
-            <div class="card-body">
-                <a type="submit" class="btn btn-block btn-success" id="login-btn" >Bevestig</a>
-            </div>
+    <div class="row justify-content-center md-center">
+        <div class="col-sm-4  m-3" id="registration">
+            <h2 class="mb-3">Registreren
+            </h2>
+
+            <form class="registration-form">
+                <div class="form-group">
+                    <label for="name">Gebruikersnaam</label>
+                    <input class="form-control" type="text" id="name" name="username" aria-describedby="emailHelp"
+                           placeholder="Vul uw gebruikersnaam in"/>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Wachtwoord</label>
+                    <input class="form-control" type="password" id="password1" name="password1"
+                           aria-describedby="emailHelp"
+                           placeholder="Vul uw wachtwoord in"/>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Bevestig Wachtwoord</label>
+                    <input class="form-control" type="password" id="password2" name="password1"
+                           aria-describedby="emailHelp"
+                           placeholder="Herhaal uw wachtwoord"/>
+                </div>
+
+                <button type="submit" class="btn btn-block btn-success" id="login-btn">Bevestig</button>
+            </form>
         </div>
     </div>
-</div>
 
+</div>
