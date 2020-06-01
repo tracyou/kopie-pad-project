@@ -37,6 +37,8 @@ class NetworkManager {
 
     }
 
+
+
     /**
      * generic fail handler which is always executed, add more specific error handling in controller
      * @param xhr
