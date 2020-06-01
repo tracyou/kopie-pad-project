@@ -86,7 +86,7 @@ app.post("/user/registration", (req, res) => {
 app.get("/contacten", (req, res) =>{
     const contactName = req.body.contactName;
     const contactResidence = req.body.contactResidence;
-}
+});
 
 app.post("/contactAdd", (req, res) => {
     const contactName = req.body.contactName;
