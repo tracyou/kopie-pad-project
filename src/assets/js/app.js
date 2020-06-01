@@ -52,7 +52,7 @@ class App {
             case CONTROLLER_LOGIN:
                 this.setCurrentController(name);
                 new LoginController();
-                this.isLoggedIn(() => new WelcomeController(), () => new LoginController());
+                //this.isLoggedIn(() => new WelcomeController(), () => new LoginController());
                 break;
 
             case CONTROLLER_LOGOUT:
@@ -79,12 +79,13 @@ class App {
             case CONTROLLER_ADD:
                 this.setCurrentController(name);
                 new contactAddController();
-                this.isLoggedIn(() => new contactAddController(), () => new landingspageController());
+                //this.isLoggedIn(() => new contactAddController(), () => new landingspageController());
                 break;
+
             case CONTROLLER_CHANGE:
                 this.setCurrentController(name);
                 new contactChangeController();
-                this.isLoggedIn(() => new contactChangeController(), () => new landingspageController());
+                //this.isLoggedIn(() => new contactChangeController(), () => new landingspageController());
                 break;
 
             default:

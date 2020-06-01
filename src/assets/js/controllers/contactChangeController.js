@@ -12,6 +12,8 @@ class contactChangeController {
         this.contactToevoegenView = $(data);
         this.contactToevoegenView.find("#a").on("click", () => this.onCreateContact(event));
 
+        this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_LOGOUT));
+
         $(".content").empty().append(this.contactToevoegenView);
     }
 

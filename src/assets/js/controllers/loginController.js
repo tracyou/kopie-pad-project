@@ -20,8 +20,6 @@ class LoginController {
 
         this.loginView.find(".login-form").on("submit", (e) => this.handleLogin(e));
 
-        this.loginView.find("#a").on("click", ()=> app.loadController(CONTROLLER_ADD));
-
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.loginView);
     }
