@@ -6,13 +6,12 @@ class registrationController {
             .done((data) => this.setup(data))
             .fail(() => this.error());
 
-
     }
 
     setup(data) {
 
         this.registration = $(data);
-        this.registration.find("a").on("click", () => this.onCreateUser(event));
+        this.registration.find("button").on("click", () => this.onCreateUser(event));
 
 
         $(".content").empty().append(this.registration);
@@ -35,9 +34,10 @@ class registrationController {
             try {
                 await this.registerRepository.register(name, password1);
 
-                // sessionManager.set("username", user.name);
+                sessionManager.set("username", name);
+                app.loadController(CONTROLLER_WELCOME);
+                app.loadController(CONTROLLER_SIDEBAR);
             } catch (e) {
-                // If unauthorized error show error to user.
                 if (e.code === 401) {
                     this.registration
                         .find(".error")

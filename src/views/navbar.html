@@ -11,14 +11,16 @@
                     <a class="nav-item nav-link dropdown-toggle mr-md" data-toggle="dropdown" data-target="dropdown-target" href="#" data-controller="welcome">Menu
                         <span class="caret"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-md-right">
-                        <a class="dropdown-item" data-controller="loginController" href="#">Login</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-controller="registrationController">Registreer</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-controller="#">Help</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-controller="Logout" href="#">Logout</a>
+                    <div class="dropdown-menu dropdown-menu-md-right" id="dropdownMenu">
+                        <a class="dropdown-item" id="login" data-controller="login">Login</a>
+                        <div class="dropdown-divider" id="loginRegistrationDivider"></div>
+                        <a class="dropdown-item" id="registration" data-controller="registration">Registreer</a>
+                        <div class="dropdown-divider" id="registrationHelpDivider"></div>
+                        <a class="dropdown-item" id="help" data-controller="help">Help</a>
+                        <div class="dropdown-divider" id="helpContactsDivider"></div>
+                        <a class="dropdown-item" id="contacts" data-controller="contacts">Uw contacten</a>
+                        <div class="dropdown-divider" id="contactsLogoutDivider"></div>
+                        <a class="dropdown-item" id="logout" data-controller="logout" >Logout</a>
                     </div>
                 </li>
             </ul>

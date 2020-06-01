@@ -42,6 +42,7 @@ class LoginController {
 
             sessionManager.set("username", user.username);
             app.loadController(CONTROLLER_WELCOME);
+            app.loadController(CONTROLLER_SIDEBAR);
 
         } catch(e) {
             // If unauthorized error show error to user.
