@@ -5,7 +5,6 @@ class registrationController {
         $.get("views/registration.html")
             .done((data) => this.setup(data))
             .fail(() => this.error());
-
     }
 
     setup(data) {
@@ -13,6 +12,7 @@ class registrationController {
         this.registration = $(data);
         this.registration.find("button").on("click", () => this.onCreateUser(event));
 
+        this.registration.find("button").on("click", () => app.loadController(CONTROLLER_ADD));
 
         $(".content").empty().append(this.registration);
     }
@@ -35,8 +35,6 @@ class registrationController {
                 await this.registerRepository.register(name, password1);
 
                 sessionManager.set("username", name);
-                app.loadController(CONTROLLER_WELCOME);
-                app.loadController(CONTROLLER_SIDEBAR);
             } catch (e) {
                 if (e.code === 401) {
                     this.registration

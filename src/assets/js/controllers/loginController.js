@@ -20,6 +20,8 @@ class LoginController {
 
         this.loginView.find(".login-form").on("submit", (e) => this.handleLogin(e));
 
+        this.loginView.find("#a").on("click", ()=> app.loadController(CONTROLLER_ADD));
+
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.loginView);
     }
@@ -33,8 +35,8 @@ class LoginController {
         event.preventDefault();
 
         // Find the username and password.
-        const username = this.loginView.find("[name='username']").val();
-        const password = this.loginView.find("[name='password']").val();
+        const username = this.loginView.find("#usernamelogin").val();
+        const password = this.loginView.find("#passwordlogin").val();
 
         try{
             // Await keyword 'stops' code until data is returned - can only be used in async function.
