@@ -35,7 +35,7 @@ class LoginController {
         // Find the username and password.
         const username = this.loginView.find("[name='username']").val();
         const password = this.loginView.find("[name='password']").val();
-
+  
         try{
             // Await keyword 'stops' code until data is returned - can only be used in async function.
             const user = await this.userRepository.login(username, password);
