@@ -15,6 +15,9 @@ const CONTROLLER_LANDINGSPAGE = "landingspage";
 const CONTROLLER_REGISTRATION = "registration";
 const CONTROLLER_ADD = "contactAdd";
 const CONTROLLER_CHANGE ="contactChange";
+const CONTROLLER_CONTACTEN = "contacten";
+const CONTROLLER_CONTACTUS = "contactUs";
+const CONTROLLER_FAQ= "faq";
 
 const sessionManager = new SessionManager();
 const networkManager = new NetworkManager();
@@ -23,8 +26,9 @@ class App {
 
     init() {
         //Always load the sidebar
-        this.loadController(CONTROLLER_SIDEBAR); 
+        this.loadController(CONTROLLER_SIDEBAR);
         this.loadController(CONTROLLER_LANDINGSPAGE);
+
         //Attempt to load the controller from the URL, if it fails, fall back to the welcome controller.
         // this.loadControllerFromUrl(CONTROLLER_WELCOME);
     }
@@ -86,6 +90,22 @@ class App {
                 this.setCurrentController(name);
                 new contactChangeController();
                 //this.isLoggedIn(() => new contactChangeController(), () => new landingspageController());
+                break;
+
+            case CONTROLLER_CONTACTEN:
+                this.setCurrentController(name);
+                new ContactenController();
+                break;
+
+            case CONTROLLER_CONTACTUS:
+                this.setCurrentController(name);
+                new contactUsController();
+                break;
+
+
+            case CONTROLLER_FAQ:
+                this.setCurrentController(name);
+                new faqController();
                 break;
 
             default:

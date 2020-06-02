@@ -4,6 +4,7 @@
  * @author Pim Meijer
  */
 const express = require("express");
+const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const db = require("./utils/databaseHelper");
@@ -86,8 +87,18 @@ app.post("/user/registration", (req, res) => {
 app.get("/contacten", (req, res) =>{
     const contactName = req.body.contactName;
     const contactResidence = req.body.contactResidence;
-}
-
+    const contactDescription = req.body.contactDescription;
+    const contactPhoneNumber = req.body.contactPhoneNumber;
+    db.handleQuery(connectionPool, {
+            query: "SELECT * FROM contact",
+            values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription]
+        }, (data) => {
+            //just give all data back as json
+        console.log(data);
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+});
 app.post("/contactAdd", (req, res) => {
     const contactName = req.body.contactName;
     const contactResidence = req.body.contactResidence;
@@ -124,6 +135,21 @@ app.post("/contactChange", (req, res) => {
             values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription]
         }, (data) => {
             //just give all data back as json
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+});
+
+app.post("/contactus", (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const message= req.body.message;
+
+    db.handleQuery(connectionPool, {
+            query: "INSERT INTO support(firstname, lastname, email, message)VALUES(?,?,?,?)",
+            values: [firstname, lastname, email, message]
+        }, (data) => {
             res.status(httpOkCode).json(data);
         }, (err) => res.status(badRequestCode).json({reason: err})
     );

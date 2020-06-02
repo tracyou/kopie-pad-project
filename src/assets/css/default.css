@@ -82,9 +82,7 @@ footer {
 
 
 .container {
-    margin:auto;
-    padding: 2px 8px;
-    text-align:center;
+
 }
 
 img{
@@ -94,6 +92,16 @@ img{
 }
 
 .addctt{
+    text-align:center;
+}
+
+.faqvragen{
+    background-color:lightgrey;
+
+}
+
+.faqheader{
+    padding-bottom: 40px;
     text-align:center;
 }
 
