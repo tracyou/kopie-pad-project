@@ -43,7 +43,7 @@ app.post("/user/login", (req, res) => {
             res.status(httpOkCode).json({"username": data[0].username});
         } else {
             //wrong username
-            res.status(authorizationErrCode).json({reason: "Wrong username or password"});
+            res.status(authorizationErrCode).json({reason: "Verkeerde username of password"});
         }
 
     }, (err) => res.status(badRequestCode).json({reason: err}));
