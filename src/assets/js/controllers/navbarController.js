@@ -13,6 +13,9 @@ class NavbarController {
 
     //Called when the navbar.html has been loaded
     setup(data) {
+
+        //this.navbar.find("#a").on("click", ()=> app.loadController(CONTROLLER_LANDINGSPAGE));
+
         //Load the sidebar-content into memory
         this.navbar = $(data);
 
@@ -22,7 +25,6 @@ class NavbarController {
             this.navbar.find("#registration").hide() &&
             this.navbar.find("#registrationHelpDivider").hide(),
             () =>
-                this.navbar.find("#helpContactsDivider").hide() &&
                 this.navbar.find("#contacts").hide() &&
                 this.navbar.find("#faqitem").hide() &&
                 this.navbar.find("#faqDivider").hide() &&
@@ -36,8 +38,6 @@ class NavbarController {
         // this.navbar.find("#dropdownMenu").on("click", () => this.handleClickMenuItem);
 
         this.navbar.find(".dropdown-item").on("click", this.handleClickMenuItem);
-
-        //TODO: Add logic here to determine which menu items should be visible or not
 
         //Empty the sidebar-div and add the resulting view to the page
         $(".sidebar").empty().append(this.navbar);
