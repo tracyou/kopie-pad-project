@@ -12,8 +12,6 @@ class registrationController {
         this.registration = $(data);
         this.registration.find("button").on("click", () => this.onCreateUser(event));
 
-        // this.registration.find("button").on("click", () => app.loadController(CONTROLLER_LOGIN));
-
         $(".content").empty().append(this.registration);
     }
 
@@ -25,18 +23,14 @@ class registrationController {
         const password2 = this.registration.find("#password2").val();
 
         if (name.length === 0 || password1.length === 0 || password2.length === 0) {
-            alert('U heeft niet alle velden ingevuld!');
+            this.registration.find(".error").html("U heeft niet alle velden ingevuld!");
         } else if (password1 !== password2) {
-            alert('De wachtwoorden die u heeft ingevuld komen niet overeen!');
+            this.registration.find(".error").html("De wachtwoorden die u heeft ingevuld komen niet overeen!");
         } else {
-            alert('Het registreren is gelukt!');
-
             try {
+                app.loadController(CONTROLLER_LOGIN);
                 await this.registerRepository.register(name, password1);
 
-                sessionManager.set("username", name);
-                app.loadController(CONTROLLER_LOGIN);
-                app.loadController(CONTROLLER_SIDEBAR);
             } catch (e) {
                 if (e.code === 401) {
                     this.registration
