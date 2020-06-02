@@ -102,7 +102,6 @@ class App {
                 new contactUsController();
                 break;
 
-
             case CONTROLLER_FAQ:
                 this.setCurrentController(name);
                 new faqController();
