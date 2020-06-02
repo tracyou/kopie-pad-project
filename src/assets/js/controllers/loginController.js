@@ -16,12 +16,15 @@ class LoginController {
     //Called when the login.html has been loaded
     setup(data) {
         //Load the login-content into memory
-        this.loginView = $(data);
+        this.login = $(data);
 
-        this.loginView.find(".login-form").on("submit", (e) => this.handleLogin(e));
+        this.login.find(".login-form").on("submit", (e) => this.handleLogin(e));
+
+        this.login.find("#a").on("click", ()=> app.loadController(CONTROLLER_WELCOME));
+
 
         //Empty the content-div and add the resulting view to the page
-        $(".content").empty().append(this.loginView);
+        $(".content").empty().append(this.login);
     }
 
     /**
@@ -33,8 +36,8 @@ class LoginController {
         event.preventDefault();
 
         // Find the username and password.
-        const username = this.loginView.find("[name='username']").val();
-        const password = this.loginView.find("[name='password']").val();
+        const username = this.login.find("[name='username']").val();
+        const password = this.login.find("[name='password']").val();
   
         try{
             // Await keyword 'stops' code until data is returned - can only be used in async function.
@@ -47,7 +50,7 @@ class LoginController {
         } catch(e) {
             // If unauthorized error show error to user.
             if(e.code === 401) {
-                this.loginView
+                this.login
                     .find(".error")
                     .html(e.reason);
             } else {
