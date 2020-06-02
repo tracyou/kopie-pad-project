@@ -23,11 +23,11 @@ class NavbarController {
             this.navbar.find("#login").hide() &&
             this.navbar.find("#loginRegistrationDivider").hide() &&
             this.navbar.find("#registration").hide() &&
+            this.navbar.find("#faqitem").hide() &&
+            this.navbar.find("#faqDivider").hide() &&
             this.navbar.find("#registrationHelpDivider").hide(),
             () =>
                 this.navbar.find("#contacts").hide() &&
-                this.navbar.find("#faqitem").hide() &&
-                this.navbar.find("#faqDivider").hide() &&
                 this.navbar.find("#contactons").hide() &&
                 this.navbar.find("#contactusdivider").hide &&
                 this.navbar.find("#contactsLogoutDivider").hide() &&

@@ -20,7 +20,7 @@ class LoginController {
 
         this.login.find(".login-form").on("submit", (e) => this.handleLogin(e));
 
-        this.login.find("#a").on("click", ()=> app.loadController(CONTROLLER_WELCOME));
+        this.login.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
 
 
         //Empty the content-div and add the resulting view to the page

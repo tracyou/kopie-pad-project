@@ -12,7 +12,7 @@ class registrationController {
         this.registration = $(data);
         this.registration.find("button").on("click", () => this.onCreateUser(event));
 
-        this.registration.find("button").on("click", () => app.loadController(CONTROLLER_CONTACTEN));
+        this.registration.find("button").on("click", () => app.loadController(CONTROLLER_LOGIN));
 
         $(".content").empty().append(this.registration);
     }

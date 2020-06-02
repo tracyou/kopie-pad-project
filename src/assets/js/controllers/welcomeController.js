@@ -18,10 +18,11 @@ class WelcomeController {
         //Load the welcome-content into memory
         this.welcomeView = $(data);
 
-        this.welcomeView.find("a").on("click", () => this.logout(event));
-
         //Set the name in the view from the session
         this.welcomeView.find("#name").html("Welkom " + sessionManager.get("username"));
+
+        this.welcomeView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
+
 
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.welcomeView);
