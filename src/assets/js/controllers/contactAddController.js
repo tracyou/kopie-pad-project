@@ -12,7 +12,7 @@ class contactAddController {
         this.contactToevoegenView = $(data);
         this.contactToevoegenView.find("#a").on("click", () => this.onCreateContact(event));
 
-        this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CHANGE));
+        this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
         $(".content").empty().append(this.contactToevoegenView);
     }
 
