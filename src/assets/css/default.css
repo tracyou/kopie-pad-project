@@ -60,13 +60,15 @@ footer {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     max-width:20rem;
-
+    text-align:center;
     vertical-align: middle;
     padding:5px;
     display:inline;
+    height: 320px;
 }
 
 
+/*
 .card:hover{
     display: inline-block;
     vertical-align: middle;
@@ -77,8 +79,9 @@ footer {
     transition-property: transform;
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
-    z-index: 1;
+    z-index: 0;
 }
+ */
 
 
 .container {
@@ -96,12 +99,22 @@ img{
 }
 
 .faqvragen{
-    background-color:lightgrey;
+    background-color: #626262;
 
 }
 
 .faqheader{
     padding-bottom: 40px;
+    text-align:center;
+}
+
+.midpage{
+    padding: 30px 30px;
+    background-color:#626262; !important;
+}
+
+.endpage{
+    padding-top : 50px;
     text-align:center;
 }
 

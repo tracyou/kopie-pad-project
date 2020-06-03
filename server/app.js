@@ -91,7 +91,7 @@ app.get("/contacten", (req, res) =>{
     const contactPhoneNumber = req.body.contactPhoneNumber;
     db.handleQuery(connectionPool, {
             query: "SELECT * FROM contact",
-            values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription]
+            values: [contactName, contactResidence, contactDescription, contactPhoneNumber]
         }, (data) => {
             //just give all data back as json
         console.log(data);
