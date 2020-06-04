@@ -4,7 +4,6 @@
  * @author Pim Meijer
  */
 const express = require("express");
-const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const db = require("./utils/databaseHelper");
@@ -140,15 +139,15 @@ app.post("/contactChange", (req, res) => {
     );
 });
 
-app.post("/contactus", (req, res) => {
+app.post("/contactUs", (req, res) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
-    const email = req.body.email;
-    const message= req.body.message;
+    const contactusemail = req.body.contactusemail;
+    const message= req.body.contactmessage;
 
     db.handleQuery(connectionPool, {
-            query: "INSERT INTO support(firstname, lastname, email, message)VALUES(?,?,?,?)",
-            values: [firstname, lastname, email, message]
+            query: "INSERT INTO support(firstname, lastname, email, message) VALUES (?,?,?,?)",
+            values: [firstname, lastname, contactusemail, message]
         }, (data) => {
             res.status(httpOkCode).json(data);
         }, (err) => res.status(badRequestCode).json({reason: err})
