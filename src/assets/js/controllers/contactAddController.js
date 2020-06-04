@@ -12,7 +12,7 @@ class contactAddController {
         this.contactToevoegenView = $(data);
         this.contactToevoegenView.find("#a").on("click", () => this.onCreateContact(event));
 
-        this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
+
         $(".content").empty().append(this.contactToevoegenView);
     }
 
@@ -29,8 +29,8 @@ class contactAddController {
         const contactQualityDriver = $("#exampleCheck4").is(':checked') ? 1:0 ;
 
         if (contactName.length === 0 || contactResidence.length === 0 ||
-            contactDescription.length === 0 || contactPhoneNumber.length === 0) {
-            alert('U heeft niet alle velden ingevuld!');
+            contactDescription.length === 0 || contactPhoneNumber.length === 0 || contactPhoneNumber.length > 10) {
+            alert('U heeft niet alle velden goed ingevuld!');
         } else {
             console.log(contactName);
             console.log(contactResidence);
@@ -47,6 +47,7 @@ class contactAddController {
                     contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
                     contactQualityDriver);
                 alert(contactName + ' is toegevoegd!');
+                this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
             } catch (e) {
                 if (e.code === 401) {
                     this.contactAdd
