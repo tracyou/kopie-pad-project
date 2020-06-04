@@ -4,6 +4,8 @@ describe("Login", function () {
     beforeEach(() => {
         //Go to the specified URL
         cy.visit("http://localhost:8080");
+        cy.get("#dropdownMenu").click({ force: true });
+        cy.get("#login").click({ force: true });
     });
 
     //Test: Validate login form
@@ -74,7 +76,7 @@ describe("Login", function () {
         cy.get("#exampleInputUsername").type("test");
 
         //Find the field for the password and type the text "test".
-        cy.get("#exampleInputPassword").type("test");
+        cy.get("#exampleInputPassword").type("test1");
 
         //Find the button to login and click it.
         cy.get(".login-form button").click();

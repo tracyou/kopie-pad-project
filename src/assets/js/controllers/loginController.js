@@ -20,9 +20,6 @@ class LoginController {
 
         this.login.find(".login-form").on("submit", (e) => this.handleLogin(e));
 
-        this.login.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
-
-
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.login);
     }
@@ -44,7 +41,7 @@ class LoginController {
             const user = await this.userRepository.login(username, password);
 
             sessionManager.set("username", user.username);
-            app.loadController(CONTROLLER_WELCOME);
+            app.loadController(CONTROLLER_CONTACTEN);
             app.loadController(CONTROLLER_SIDEBAR);
 
         } catch(e) {

@@ -1,14 +1,16 @@
 class contactUsController{
 
     constructor() {
-        $.get('views/contactUs.html')
+        this.contactUsRepository = new contactUsRepository();
+        
+        $.get("views/contactUs.html")
             .done((data) => this.setup(data))
             .fail(() => this.error());
     }
 
     setup(data){
         this.contactUs = $(data);
-        this.contactUs.find("#sendmsg").on("click", () => this.Check());
+        this.contactUs.find("#sendMsg").on("click", () => this.Checkmsg());
         //Empty the content-div and add the resulting view to the page
         $(".content").empty().append(this.contactUs);
     }
@@ -17,17 +19,28 @@ class contactUsController{
         $(".content").html("Failed to load content!");
     }
 
-    Check(){
+    async Checkmsg(){
         const firstname = this.contactUs.find("#firstname").val();
         const lastname = this.contactUs.find("#lastname").val();
-        const email = this.contactUs.find("#email").val();
-        const supportmessage = this.contactUs.find("#berichtarea").val();
+        const contactusemail = this.contactUs.find("#contactusemail").val();
+        const contactmessage = this.contactUs.find("#contactmessage").val();
 
         if (firstname.length === 0 || lastname.length === 0 ||
-            email.length === 0 || supportmessage.length === 0) {
+            contactusemail.length === 0 || contactmessage.length === 0) {
             alert('U heeft niet alle velden ingevuld!');
         } else {
-            alert("Uw bericht is verstuurd!")
+            try {
+                await this.contactUsRepository.supportMsg(firstname, lastname, contactusemail,
+                    contactmessage);
+                alert('Uw bericht is verstuurd!');
+            } catch (ex) {
+                if (ex.code === 401) {
+                    this.contactUs
+                        .find(".error")
+                        .html(ex.reason);
+                }
+            }
+
         }
     }
 }
