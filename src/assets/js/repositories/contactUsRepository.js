@@ -3,10 +3,10 @@ class contactUsRepository{
         this.route = "/contactUs"
     }
 
-    async supportMsg(firstname, lastname, contactusemail,
-              contactmessage) {
+    async supportMsg(firstName, lastName, contactUsEmail,
+              contactMessage) {
         return await networkManager
-            .doRequest(`${this.route}`, {"firstname": firstname, "lastname" : lastname,
-                "contactusemail" : contactusemail, "contactmessage":contactmessage});
+            .doRequest(`${this.route}`, {"firstname": firstName, "lastname" : lastName,
+                "contactusemail" : contactUsEmail, "contactmessage":contactMessage});
 
 }}

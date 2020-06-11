@@ -83,11 +83,12 @@ app.post("/user/registration", (req, res) => {
     }, (err) => res.status(badRequestCode).json({reason: err}));
 });
 
-app.get("/contacten", (req, res) =>{
+app.get("/contacts/loading", (req, res) =>{
     const contactName = req.body.contactName;
     const contactResidence = req.body.contactResidence;
     const contactDescription = req.body.contactDescription;
     const contactPhoneNumber = req.body.contactPhoneNumber;
+    /*TODO: Find a way to receive contacts with the right user id*/
     db.handleQuery(connectionPool, {
             query: "SELECT * FROM contact",
             values: [contactName, contactResidence, contactDescription, contactPhoneNumber]
@@ -98,6 +99,7 @@ app.get("/contacten", (req, res) =>{
         }, (err) => res.status(badRequestCode).json({reason: err})
     );
 });
+
 app.post("/contactAdd", (req, res) => {
     const contactName = req.body.contactName;
     const contactResidence = req.body.contactResidence;
