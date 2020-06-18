@@ -27,8 +27,8 @@ class App {
     init() {
         //Always load the sidebar
         this.loadController(CONTROLLER_SIDEBAR);
-        this.loadController(CONTROLLER_CONTACTEN);
-        // this.loadController(CONTROLLER_LANDINGSPAGE);
+        // this.loadController(CONTROLLER_CONTACTEN);
+        this.loadController(CONTROLLER_LANDINGSPAGE);
 
         //Attempt to load the controller from the URL, if it fails, fall back to the welcome controller.
         // this.loadControllerFromUrl(CONTROLLER_WELCOME);
