@@ -35,7 +35,7 @@ class registrationController {
                 if (e.code === 401) {
                     this.registration
                         .find(".error")
-                        .html(e.reason);
+                        // .html(e.reason);
                 } else {
                     console.log(e);
                 }
