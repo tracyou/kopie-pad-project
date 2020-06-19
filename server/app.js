@@ -88,10 +88,15 @@ app.get("/contacts/loading", (req, res) =>{
     const contactResidence = req.body.contactResidence;
     const contactDescription = req.body.contactDescription;
     const contactPhoneNumber = req.body.contactPhoneNumber;
+    const contactQualityMedical = req.body.contactQualityMedical;
+    const contactQualityComputer = req.body.contactQualityComputer;
+    const contactQualitySocial = req.body.contactQualitySocial;
+    const contactQualityDriver = req.body.contactQualityDriver;
+
     /*TODO: Find a way to receive contacts with the right user id*/
     db.handleQuery(connectionPool, {
             query: "SELECT * FROM contact",
-            values: [contactName, contactResidence, contactDescription, contactPhoneNumber]
+        values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription]
         }, (data) => {
             //just give all data back as json
         console.log(data);
