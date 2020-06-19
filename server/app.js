@@ -29,6 +29,7 @@ const httpOkCode = 200;
 const badRequestCode = 400;
 const authorizationErrCode = 401;
 
+
 app.post("/user/login", (req, res) => {
     const username = req.body.username;
     const password = cryptoHelper.getHashedPassword(req.body.password);
@@ -38,7 +39,6 @@ app.post("/user/login", (req, res) => {
         values: [username, password]
     }, (data) => {
         if (data.length === 1) {
-            //return just the username for now, never send password back!
             res.status(httpOkCode).json({"username": data[0].username});
         } else {
             //wrong username
@@ -46,6 +46,19 @@ app.post("/user/login", (req, res) => {
         }
 
     }, (err) => res.status(badRequestCode).json({reason: err}));
+});
+
+app.post("/user/getId", (req, res) => {
+    const username = req.body.username;
+
+    db.handleQuery(connectionPool, {
+        query: "SELECT id FROM user WHERE username = ?",
+        values: [username]
+        }, (data) => {
+            //just give all data back as json
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
 });
 
 //dummy data example - rooms
@@ -83,7 +96,7 @@ app.post("/user/registration", (req, res) => {
     }, (err) => res.status(badRequestCode).json({reason: err}));
 });
 
-app.get("/contacts/loading", (req, res) =>{
+app.post("/contacts/loading", (req, res) =>{
     const contactName = req.body.contactName;
     const contactResidence = req.body.contactResidence;
     const contactDescription = req.body.contactDescription;

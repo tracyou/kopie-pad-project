@@ -40,6 +40,10 @@ class LoginController {
             // Await keyword 'stops' code until data is returned - can only be used in async function.
             const user = await this.userRepository.login(username, password);
 
+            const id = await this.userRepository.get(username);
+
+            console.log(JSON.stringify(id));
+
             sessionManager.set("username", user.username);
             app.loadController(CONTROLLER_CONTACTEN);
             app.loadController(CONTROLLER_SIDEBAR);
