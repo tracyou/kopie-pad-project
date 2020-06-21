@@ -25,8 +25,8 @@ class contactAddController {
         try{
             const id = await this.userRepository.get(sessionManager.get("username"));
 
-            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, "");
-            userId = firstReplace.replace(/\}\]/, "");
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+            userId = firstReplace.replace(/\}\]/, " ");
 
             console.log(userId);
 
@@ -59,7 +59,7 @@ class contactAddController {
                     contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
                     contactQualityDriver, userId);
                 alert(contactName + ' is toegevoegd!');
-                this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
+                this.contactToevoegenView.find("#a").on("click", () => app.loadController(CONTROLLER_CONTACTEN));
             } catch (e) {
                 if (e.code === 401) {
                     this.contactAdd
@@ -82,8 +82,7 @@ class contactAddController {
             }
         }
     }
-
-
+    
     error() {
         $(".content").html("Failed to load the change contact page!");
     }

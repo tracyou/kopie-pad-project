@@ -130,7 +130,7 @@ app.post("/contactAdd", (req, res) => {
     const contactUserId = req.body.userId;
 
     db.handleQuery(connectionPool, {
-            query: "INSERT INTO contact (Name, Residence, TelephoneNr, canDrive, canMeet, Medical, Computer, Description) VALUES (?,?,?,?,?,?,?,?,?)",
+            query: "INSERT INTO contact (Name, Residence, TelephoneNr, canDrive, canMeet, Medical, Computer, Description, userId) VALUES (?,?,?,?,?,?,?,?,?)",
             values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription, contactUserId]
         }, (data) => {
             //just give all data back as json
