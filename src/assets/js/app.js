@@ -15,7 +15,7 @@ const CONTROLLER_LANDINGSPAGE = "landingspage";
 const CONTROLLER_REGISTRATION = "registration";
 const CONTROLLER_ADD = "contactAdd";
 const CONTROLLER_CHANGE ="contactChange";
-const CONTROLLER_CONTACTEN = "contacten";
+const CONTROLLER_CONTACTEN = "contacts";
 const CONTROLLER_CONTACTUS = "contactUs";
 const CONTROLLER_FAQ= "faq";
 

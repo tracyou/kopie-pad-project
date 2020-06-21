@@ -1,5 +1,6 @@
 class contactsController {
     constructor() {
+        this.userRepository = new UserRepository();
         this.contactsRepository = new contactsRepository();
 
         $.get("views/contacts.html")
@@ -20,18 +21,43 @@ class contactsController {
 
     }
 
-    async fetch(contactName, contactResidence, contactDescription,
-                contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-                contactQualityDriver) {
-        try {
-            const data = this.contactsRepository.get(contactName, contactResidence, contactDescription,
-                contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-                contactQualityDriver);
+    async fetch() {
+        var idUser;
 
-            console.log(data);
+        try{
+            const id = await this.userRepository.get(sessionManager.get("username"));
+
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+            idUser = firstReplace.replace(/\}\]/, " ");
+
+            try {
+                const data = await this.contactsRepository.get(idUser);
+
+                console.log(data);
+
+                const contactsTable = $("#contactsList");
+                data.forEach((data) => {
+                    let newContactRow = "<tr>";
+                    newContactRow += `<th>${data.name}</th>`;
+                    newContactRow += `<td>${data.residence}</td>`;
+                    newContactRow += `<td>${data.telephoneNr}</td>`;
+                    newContactRow += `<td>${data.canDrive}</td>`;
+                    newContactRow += `<td>${data.canMeet}</td>`;
+                    newContactRow += `<td>${data.medical}</td>`;
+                    newContactRow += `<td>${data.computer}</td>`;
+                    newContactRow += `<td>${data.description}</td>`;
+                    newContactRow += "</tr>";
+
+                    contactsTable.append(newContactRow)
+                });
+
+            }catch (e) {
+                console.log(e);
+            }
         }catch (e) {
             console.log(e);
         }
+
     }
 
     error() {

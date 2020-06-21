@@ -42,7 +42,7 @@ app.post("/user/login", (req, res) => {
             res.status(httpOkCode).json({"username": data[0].username});
         } else {
             //wrong username
-            res.status(authorizationErrCode).json({reason: "Verkeerde username of password"});
+            res.status(authorizationErrCode).json({reason: "Verkeerde username of wachtwoord"});
         }
 
     }, (err) => res.status(badRequestCode).json({reason: err}));
@@ -97,19 +97,11 @@ app.post("/user/registration", (req, res) => {
 });
 
 app.post("/contacts/loading", (req, res) =>{
-    const contactName = req.body.contactName;
-    const contactResidence = req.body.contactResidence;
-    const contactDescription = req.body.contactDescription;
-    const contactPhoneNumber = req.body.contactPhoneNumber;
-    const contactQualityMedical = req.body.contactQualityMedical;
-    const contactQualityComputer = req.body.contactQualityComputer;
-    const contactQualitySocial = req.body.contactQualitySocial;
-    const contactQualityDriver = req.body.contactQualityDriver;
+    const id = req.body.userId;
 
-    /*TODO: Find a way to receive contacts with the right user id*/
     db.handleQuery(connectionPool, {
-            query: "SELECT * FROM contact",
-        values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription]
+            query: "SELECT name, residence, telephoneNr, canDrive, canMeet, medical, computer, description FROM contact WHERE userId = ?",
+        values: [id]
         }, (data) => {
             //just give all data back as json
         console.log(data);

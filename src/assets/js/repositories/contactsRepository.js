@@ -3,13 +3,8 @@ class contactsRepository {
         this.route = "/contacts"
     }
 
-    async get(contactName, contactResidence, contactDescription,
-              contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-              contactQualityDriver) {
+    async get(userId) {
         return await networkManager
-            .doRequest(`${this.route}/loading`, {"contactName": contactName, "contactResidence" : contactResidence,
-                "contactDescription" : contactDescription, "contactPhoneNumber":contactPhoneNumber,
-                "contactQualityMedical": contactQualityMedical, "contactQualityComputer": contactQualityComputer,
-                "contactQualitySocial": contactQualitySocial, "contactQualityDriver": contactQualityDriver,});
+            .doRequest(`${this.route}/loading`, {"userId": userId});
     }
 }
