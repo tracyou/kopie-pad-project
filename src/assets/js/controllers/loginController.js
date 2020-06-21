@@ -42,7 +42,11 @@ class LoginController {
 
             const id = await this.userRepository.get(username);
 
-            console.log(JSON.stringify(id));
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+            const secondReplace = firstReplace.replace(/\}\]/, " ");
+
+
+            console.log(secondReplace);
 
             sessionManager.set("username", user.username);
             app.loadController(CONTROLLER_CONTACTEN);

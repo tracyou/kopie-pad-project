@@ -1,5 +1,6 @@
 class contactAddController {
     constructor() {
+        this.userRepository = new UserRepository();
         this.contactAddRepository = new contactAddRepository();
 
         $.get("views/contactAdd.html")
@@ -18,6 +19,16 @@ class contactAddController {
 
     async onCreateContact(event) {
         event.preventDefault();
+
+        var userId;
+
+        try{
+            const id = await this.userRepository.get(sessionManager.get("username"));
+
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, "");
+            userId = firstReplace.replace(/\}\]/, "");
+
+            console.log(userId);
 
         const contactName = this.contactToevoegenView.find("#exampleContact").val();
         const contactResidence = this.contactToevoegenView.find("#exampleWoonplaats").val();
@@ -41,11 +52,12 @@ class contactAddController {
             console.log(contactQualityComputer);
             console.log(contactQualitySocial);
             console.log(contactQualityDriver);
+            console.log(userId);
 
             try {
                 await this.contactAddRepository.add(contactName, contactResidence, contactDescription,
                     contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-                    contactQualityDriver);
+                    contactQualityDriver, userId);
                 alert(contactName + ' is toegevoegd!');
                 this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
             } catch (e) {
@@ -56,6 +68,17 @@ class contactAddController {
                 } else {
                     //console.log(e);
                 }
+            }
+        }
+
+        } catch(e) {
+            // If unauthorized error show error to user.
+            if(e.code === 401) {
+                this.login
+                    .find(".error")
+                    .html(e.reason);
+            } else {
+                console.log(e);
             }
         }
     }
