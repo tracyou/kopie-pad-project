@@ -19,6 +19,11 @@ const CONTROLLER_CONTACTEN = "contacts";
 const CONTROLLER_CONTACTUS = "contactUs";
 const CONTROLLER_FAQ= "faq";
 
+const CONTROLLER_FILTER_MEDICAL= "filterMedical";
+const CONTROLLER_FILTER_COMPUTER = "filterComputer";
+const CONTROLLER_FILTER_MEET= "filterMeet";
+const CONTROLLER_FILTER_DRIVE= "filterDrive";
+
 const sessionManager = new SessionManager();
 const networkManager = new NetworkManager();
 
@@ -96,6 +101,26 @@ class App {
             case CONTROLLER_CONTACTEN:
                 this.setCurrentController(name);
                 new contactsController();
+                break;
+
+            case CONTROLLER_FILTER_MEDICAL:
+                this.setCurrentController(name);
+                new contactsFilterMedicalController();
+                break;
+
+            case CONTROLLER_FILTER_COMPUTER:
+                this.setCurrentController(name);
+                new contactsFilterComputerController();
+                break;
+
+            case CONTROLLER_FILTER_MEET:
+                this.setCurrentController(name);
+                new contactsFilterMeetController();
+                break;
+
+            case CONTROLLER_FILTER_DRIVE:
+                this.setCurrentController(name);
+                new contactsFilterDriveController();
                 break;
 
             case CONTROLLER_CONTACTUS:

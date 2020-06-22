@@ -1,9 +1,9 @@
-class contactsController {
+class contactsFilterDriveController {
     constructor() {
         this.userRepository = new UserRepository();
-        this.contactsRepository = new contactsRepository();
+        this.contactsFilterDriveRepository = new contactsFilterDriveRepository();
 
-        $.get("views/contacts.html")
+        $.get("views/filterViews/contactsDrive.html")
             .done((data) => this.setup(data))
             .fail(() => this.error());
     }
@@ -17,7 +17,7 @@ class contactsController {
         this.contacten.find("#medisch").on("click", () => app.loadController(CONTROLLER_FILTER_MEDICAL));
         this.contacten.find("#computer").on("click", () => app.loadController(CONTROLLER_FILTER_COMPUTER));
         this.contacten.find("#gezellig").on("click", () => app.loadController(CONTROLLER_FILTER_MEET));
-        this.contacten.find("#rijden").on("click", () => app.loadController(CONTROLLER_FILTER_DRIVE));
+        this.contacten.find("#volledig").on("click", () => app.loadController(CONTROLLER_CONTACTEN));
 
 
         this.fetch();
@@ -37,7 +37,7 @@ class contactsController {
             idUser = firstReplace.replace(/\}\]/, " ");
 
             try {
-                const data = await this.contactsRepository.get(idUser);
+                const data = await this.contactsFilterDriveRepository.get(idUser);
 
                 console.log(data);
 

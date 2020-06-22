@@ -100,11 +100,67 @@ app.post("/contacts/loading", (req, res) =>{
     const id = req.body.userId;
 
     db.handleQuery(connectionPool, {
-            query: "SELECT name, residence, telephoneNr, canDrive, canMeet, medical, computer, description FROM contact WHERE userId = ?",
+            query: "SELECT name, residence, telephoneNr, computer, canDrive, medical, canMeet, description FROM contact WHERE userId = ?",
         values: [id]
         }, (data) => {
             //just give all data back as json
         console.log(data);
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+});
+
+app.post("/contacts/filterDrive", (req, res) =>{
+    const id = req.body.userId;
+
+    db.handleQuery(connectionPool, {
+            query: "SELECT name, residence, telephoneNr, computer, canDrive, medical, canMeet, description FROM contact WHERE userId = ? AND canDrive = 1",
+            values: [id]
+        }, (data) => {
+            //just give all data back as json
+            console.log(data);
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+});
+
+app.post("/contacts/filterMeet", (req, res) =>{
+    const id = req.body.userId;
+
+    db.handleQuery(connectionPool, {
+            query: "SELECT name, residence, telephoneNr, computer, canDrive, medical, canMeet, description FROM contact WHERE userId = ? AND canMeet = 1",
+            values: [id]
+        }, (data) => {
+            //just give all data back as json
+            console.log(data);
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+});
+
+app.post("/contacts/filterMedical", (req, res) =>{
+    const id = req.body.userId;
+
+    db.handleQuery(connectionPool, {
+            query: "SELECT name, residence, telephoneNr, computer, canDrive, medical, canMeet, description FROM contact WHERE userId = ? AND medical = 1",
+            values: [id]
+        }, (data) => {
+            //just give all data back as json
+            console.log(data);
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+});
+
+app.post("/contacts/filterComputer", (req, res) =>{
+    const id = req.body.userId;
+
+    db.handleQuery(connectionPool, {
+            query: "SELECT name, residence, telephoneNr, computer, canDrive, medical, canMeet, description FROM contact WHERE userId = ? AND computer = 1",
+            values: [id]
+        }, (data) => {
+            //just give all data back as json
+            console.log(data);
             res.status(httpOkCode).json(data);
         }, (err) => res.status(badRequestCode).json({reason: err})
     );
