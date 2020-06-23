@@ -1,6 +1,6 @@
 class contactChangeController {
     constructor() {
-        this.contactChangeRepository = new contactChangeRepository();
+        this.contactLoadForChangeRepository = new contactLoadForChangeRepository();
 
         $.get("views/contactChange.html")
             .done((data) => this.setup(data))
@@ -10,15 +10,73 @@ class contactChangeController {
     //Called wanneer landingspage.html klaar is
     setup(data) {
         this.contactToevoegenView = $(data);
+
+        this.fetch();
+
         this.contactToevoegenView.find("#a").on("click", () => this.onCreateContact(event));
 
-        this.contactToevoegenView.find("#a").on("click", ()=> app.loadController(CONTROLLER_CONTACTEN));
-
         $(".content").empty().append(this.contactToevoegenView);
+
+    }
+
+    async fetch() {
+        var idUser;
+
+        try{
+            const id = await this.userRepository.get(sessionManager.get("username"));
+
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+            idUser = firstReplace.replace(/\}\]/, " ");
+
+            try {
+                const data = await this.contactsRepository.get(idUser);
+
+                console.log(data);
+
+                document.getElementById("#exampleContact").value = `<th>${data.name}</th>`;
+                document.getElementById("#exampleWoonplaats").value = `<th>${data.residence}</th>`;
+                document.getElementById("#exampleOmschrijving").value = `<th>${data.description}</th>`;
+                document.getElementById("#exampleTelefoonnummer").value = `<th>${data.phonenumber}</th>`;
+
+                if(data.canDrive === 1){
+                    document.getElementById("#exampleCheck1").value = true;
+                } else {
+                    document.getElementById("#exampleCheck1").value = false;
+                }
+                if(data.computer === 1){
+                    document.getElementById("#exampleCheck2").value = true;
+                } else {
+                    document.getElementById("#exampleCheck2").value = false;
+                }
+                if(data.medical === 1){
+                    document.getElementById("#exampleCheck3").value = true;
+                } else {
+                    document.getElementById("#exampleCheck3").value = false;
+                }
+                if(data.canMeet === 1){
+                    document.getElementById("#exampleCheck4").value = true;
+                } else {
+                    document.getElementById("#exampleCheck4").value = false;
+                }
+
+
+            }catch (e) {
+                console.log(e);
+            }
+        }catch (e) {
+            console.log(e);
+        }
+
     }
 
     async onCreateContact(event) {
         event.preventDefault();
+
+        //request userId from database
+        var idUser;
+        const id = await this.userRepository.get(sessionManager.get("username"));
+        const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+        idUser = firstReplace.replace(/\}\]/, " ");
 
         const contactName = this.contactToevoegenView.find("#exampleContact").val();
         const contactResidence = this.contactToevoegenView.find("#exampleWoonplaats").val();
@@ -44,10 +102,10 @@ class contactChangeController {
             console.log(contactQualityDriver);
 
             try {
-                await this.contactChangeRepository.add(contactName, contactResidence, contactDescription,
+                await this.contactLoadForChangeRepository.add(contactName, contactResidence, contactDescription,
                     contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
                     contactQualityDriver);
-                alert(contactName + ' is gewijzigd!');
+                app.loadController(CONTROLLER_CONTACTEN);
             } catch (e) {
                 if (e.code === 401) {
                     this.contactChange

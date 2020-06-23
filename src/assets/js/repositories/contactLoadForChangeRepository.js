@@ -1,10 +1,10 @@
-class contactChangeRepository {
+class contactLoadForChangeRepository {
 
     constructor() {
-        this.route = "/contactChange"
+        this.route = "/loadChange"
     }
 
-    async change(contactName, contactResidence, contactDescription,
+    async get(contactName, contactResidence, contactDescription,
               contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
               contactQualityDriver) {
         return await networkManager

@@ -70,9 +70,10 @@ class contactsController {
                     newContactRow += `<td>${qualityMedical}</td>`;
                     newContactRow += `<td>${qualityMeet}</td>`;
                     newContactRow += `<td>${data.description}</td>`;
+                    newContactRow += `<td><button type="button" class="btn btn-light" id="b" onclick="console.log(${data.contactId})">Wijzig contact</button></td>`;
                     newContactRow += "</tr>";
 
-                    contactsTable.append(newContactRow)
+                    contactsTable.append(newContactRow);
                 });
 
             }catch (e) {
@@ -87,6 +88,5 @@ class contactsController {
     error() {
         $(".content").html("Failed to load the contact page!");
     }
-
 
 }
