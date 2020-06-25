@@ -1,16 +1,11 @@
 class contactLoadForChangeRepository {
 
     constructor() {
-        this.route = "/loadChange"
+        this.route = "/contactLoadForChange"
     }
 
-    async get(contactName, contactResidence, contactDescription,
-              contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-              contactQualityDriver) {
+    async get(contactId) {
         return await networkManager
-            .doRequest(`${this.route}`, {"contactName": contactName, "contactResidence" : contactResidence,
-                "contactDescription" : contactDescription, "contactPhoneNumber":contactPhoneNumber,
-                "contactQualityMedical": contactQualityMedical, "contactQualityComputer": contactQualityComputer,
-                "contactQualitySocial": contactQualitySocial, "contactQualityDriver": contactQualityDriver,});
+            .doRequest(`${this.route}`, {"contactId": contactId});
     }
 }

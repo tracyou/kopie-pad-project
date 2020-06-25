@@ -1,5 +1,6 @@
 class contactChangeController {
     constructor() {
+        this.userRepository = new UserRepository();
         this.contactLoadForChangeRepository = new contactLoadForChangeRepository();
 
         $.get("views/contactChange.html")
@@ -9,27 +10,20 @@ class contactChangeController {
 
     //Called wanneer landingspage.html klaar is
     setup(data) {
-        this.contactToevoegenView = $(data);
+        this.contactChangeView = $(data);
+
+        this.contactChangeView.find("#a").on("click", () => this.onCreateContact(event));
 
         this.fetch();
-
-        this.contactToevoegenView.find("#a").on("click", () => this.onCreateContact(event));
-
-        $(".content").empty().append(this.contactToevoegenView);
+        $(".content").empty().append(this.contactChangeView);
 
     }
 
     async fetch() {
-        var idUser;
-
-        try{
-            const id = await this.userRepository.get(sessionManager.get("username"));
-
-            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
-            idUser = firstReplace.replace(/\}\]/, " ");
+        const contactId = sessionStorage.getItem('contact');
 
             try {
-                const data = await this.contactsRepository.get(idUser);
+                const data = await this.contactLoadForChangeRepository.get(contactId);
 
                 console.log(data);
 
@@ -63,20 +57,20 @@ class contactChangeController {
             }catch (e) {
                 console.log(e);
             }
-        }catch (e) {
-            console.log(e);
         }
 
-    }
+
 
     async onCreateContact(event) {
         event.preventDefault();
 
-        //request userId from database
-        var idUser;
-        const id = await this.userRepository.get(sessionManager.get("username"));
-        const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
-        idUser = firstReplace.replace(/\}\]/, " ");
+        try{
+            var idUser;
+            const id = await this.userRepository.get(sessionManager.get("username"));
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+            idUser = firstReplace.replace(/\}\]/, " ");
+            console.log(idUser);
+        }catch (e) {}
 
         const contactName = this.contactToevoegenView.find("#exampleContact").val();
         const contactResidence = this.contactToevoegenView.find("#exampleWoonplaats").val();
@@ -101,20 +95,20 @@ class contactChangeController {
             console.log(contactQualitySocial);
             console.log(contactQualityDriver);
 
-            try {
-                await this.contactLoadForChangeRepository.add(contactName, contactResidence, contactDescription,
-                    contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-                    contactQualityDriver);
-                app.loadController(CONTROLLER_CONTACTEN);
-            } catch (e) {
-                if (e.code === 401) {
-                    this.contactChange
-                        .find(".error")
-                        .html(e.reason);
-                } else {
-                    //console.log(e);
-                }
-            }
+            // try {
+            //     await this.contactLoadForChangeRepository.add(contactName, contactResidence, contactDescription,
+            //         contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
+            //         contactQualityDriver);
+            //     app.loadController(CONTROLLER_CONTACTEN);
+            // } catch (e) {
+            //     if (e.code === 401) {
+            //         this.contactChange
+            //             .find(".error")
+            //             .html(e.reason);
+            //     } else {
+            //         //console.log(e);
+            //     }
+            // }
         }
     }
 
