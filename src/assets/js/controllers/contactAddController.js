@@ -11,8 +11,8 @@ class contactAddController {
     //Called wanneer landingspage.html klaar is
     setup(data) {
         this.contactToevoegenView = $(data);
-        this.contactToevoegenView.find("#a").on("click", () => this.onCreateContact(event));
 
+        this.contactToevoegenView.find("#a").on("click", () => this.onCreateContact(event));
 
         $(".content").empty().append(this.contactToevoegenView);
     }
@@ -52,6 +52,7 @@ class contactAddController {
             console.log(contactQualityComputer);
             console.log(contactQualitySocial);
             console.log(contactQualityDriver);
+
             console.log(userId);
 
             try {

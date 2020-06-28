@@ -95,7 +95,6 @@ class App {
             case CONTROLLER_CHANGE:
                 this.setCurrentController(name);
                 new contactChangeController();
-                //this.isLoggedIn(() => new contactChangeController(), () => new landingspageController());
                 break;
 
             case CONTROLLER_CONTACTEN:

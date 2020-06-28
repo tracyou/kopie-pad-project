@@ -2,6 +2,7 @@ class contactChangeController {
     constructor() {
         this.userRepository = new UserRepository();
         this.contactLoadForChangeRepository = new contactLoadForChangeRepository();
+        this.contactChangeRepository = new contactChangeRepository();
 
         $.get("views/contactChange.html")
             .done((data) => this.setup(data))
@@ -14,68 +15,27 @@ class contactChangeController {
 
         this.contactChangeView.find("#a").on("click", () => this.onCreateContact(event));
 
-        this.fetch();
         $(".content").empty().append(this.contactChangeView);
 
     }
 
-    async fetch() {
-        const contactId = sessionStorage.getItem('contact');
-
-            try {
-                const data = await this.contactLoadForChangeRepository.get(contactId);
-
-                console.log(data);
-
-                document.getElementById("#exampleContact").value = `<th>${data.name}</th>`;
-                document.getElementById("#exampleWoonplaats").value = `<th>${data.residence}</th>`;
-                document.getElementById("#exampleOmschrijving").value = `<th>${data.description}</th>`;
-                document.getElementById("#exampleTelefoonnummer").value = `<th>${data.phonenumber}</th>`;
-
-                if(data.canDrive === 1){
-                    document.getElementById("#exampleCheck1").value = true;
-                } else {
-                    document.getElementById("#exampleCheck1").value = false;
-                }
-                if(data.computer === 1){
-                    document.getElementById("#exampleCheck2").value = true;
-                } else {
-                    document.getElementById("#exampleCheck2").value = false;
-                }
-                if(data.medical === 1){
-                    document.getElementById("#exampleCheck3").value = true;
-                } else {
-                    document.getElementById("#exampleCheck3").value = false;
-                }
-                if(data.canMeet === 1){
-                    document.getElementById("#exampleCheck4").value = true;
-                } else {
-                    document.getElementById("#exampleCheck4").value = false;
-                }
-
-
-            }catch (e) {
-                console.log(e);
-            }
-        }
-
-
-
     async onCreateContact(event) {
         event.preventDefault();
 
+        const contactId = sessionStorage.getItem('contact');
+
         try{
-            var idUser;
+            const data = await this.contactLoadForChangeRepository.get(contactId);
+
+            var userId;
             const id = await this.userRepository.get(sessionManager.get("username"));
             const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
-            idUser = firstReplace.replace(/\}\]/, " ");
-            console.log(idUser);
-        }catch (e) {}
+            userId = firstReplace.replace(/\}\]/, " ");
 
-        const contactName = this.contactToevoegenView.find("#exampleContact").val();
-        const contactResidence = this.contactToevoegenView.find("#exampleWoonplaats").val();
-        const contactDescription = this.contactToevoegenView.find("#exampleOmschrijving").val();
-        const contactPhoneNumber = this.contactToevoegenView.find("#exampleTelefoonnummer").val();
+        const contactName = this.contactChangeView.find("#exampleContact").val();
+        const contactResidence = this.contactChangeView.find("#exampleWoonplaats").val();
+        const contactDescription = this.contactChangeView.find("#exampleOmschrijving").val();
+        const contactPhoneNumber = this.contactChangeView.find("#exampleTelefoonnummer").val();
         const contactQualityMedical = $("#exampleCheck1").is(':checked') ? 1:0 ;
         const contactQualityComputer = $("#exampleCheck2").is(':checked') ? 1:0 ;
         const contactQualitySocial = $("#exampleCheck3").is(':checked') ? 1:0 ;
@@ -95,23 +55,34 @@ class contactChangeController {
             console.log(contactQualitySocial);
             console.log(contactQualityDriver);
 
-            // try {
-            //     await this.contactLoadForChangeRepository.add(contactName, contactResidence, contactDescription,
-            //         contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-            //         contactQualityDriver);
-            //     app.loadController(CONTROLLER_CONTACTEN);
-            // } catch (e) {
-            //     if (e.code === 401) {
-            //         this.contactChange
-            //             .find(".error")
-            //             .html(e.reason);
-            //     } else {
-            //         //console.log(e);
-            //     }
-            // }
+            console.log(contactId);
+            console.log(userId);
+
+            try {
+                await this.contactChangeRepository.change(contactName, contactResidence, contactDescription,
+                    contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
+                    contactQualityDriver, contactId, userId);
+                app.loadController(CONTROLLER_CONTACTEN);
+            } catch (e) {
+                if (e.code === 401) {
+                    this.contactChange
+                        .find(".error")
+                        .html(e.reason);
+                } else {
+                    console.log(e);
+                }
+            }
+        }
+        } catch (e) {
+            if (e.code === 401) {
+                this.contactChange
+                    .find(".error")
+                    .html(e.reason);
+            } else {
+                console.log(e);
+            }
         }
     }
-
 
     error() {
         $(".content").html("Failed to load the change contact page!");

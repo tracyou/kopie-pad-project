@@ -110,20 +110,6 @@ app.post("/contacts/loading", (req, res) =>{
     );
 });
 
-// app.post("/loadChange", (req, res) =>{
-//     const id = req.body.contactId;
-//
-//     db.handleQuery(connectionPool, {
-//             query: "SELECT name, contactId, residence, telephoneNr, computer, canDrive, medical, canMeet, description FROM contact WHERE contactId = ?",
-//             values: [id]
-//         }, (data) => {
-//             //just give all data back as json
-//             console.log(data);
-//             res.status(httpOkCode).json(data);
-//         }, (err) => res.status(badRequestCode).json({reason: err})
-//     );
-// });
-
 app.post("/contacts/filterDrive", (req, res) =>{
     const id = req.body.userId;
 
@@ -211,9 +197,12 @@ app.post("/contactChange", (req, res) => {
     const contactQualitySocial = req.body.contactQualitySocial;
     const contactQualityDriver = req.body.contactQualityDriver;
 
+    const contactId = req.body.contactId;
+    const userId = req.body.userId;
+
     db.handleQuery(connectionPool, {
             query: "UPDATE contact SET Name = contactName, Residence = contactResidence, TelephoneNr = contactPhoneNumber, canDrive = contactQualityDriver, canMeet = contactQualitySocial, Medical = contactQualityMedical, Computer = contactQualityComputer, Description = contactDescription WHERE contactId = ? AND userId =?",
-            values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription]
+            values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription, contactId, userId]
         }, (data) => {
             //just give all data back as json
             res.status(httpOkCode).json(data);
