@@ -210,6 +210,20 @@ app.post("/contactChange", (req, res) => {
     );
 });
 
+app.post("/contactDelete", (req, res) => {
+    const contactId = req.body.contactId;
+    const userId = req.body.userId;
+
+    db.handleQuery(connectionPool, {
+            query: "DELETE FROM contact WHERE contactId = ? AND userId = ?;",
+            values: [contactId, userId]
+        }, (data) => {
+            //just give all data back as json
+            res.status(httpOkCode).json(data);
+        }, (err) => res.status(badRequestCode).json({reason: err})
+    );
+});
+
 app.post("/contactLoadForChange", (req, res) => {
     const contactId = req.body.contactId;
 

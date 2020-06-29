@@ -2,7 +2,8 @@ class contactChangeController {
     constructor() {
         this.userRepository = new UserRepository();
         this.contactLoadForChangeRepository = new contactLoadForChangeRepository();
-        this.contactChangeRepository = new contactChangeRepository();
+        this.contactChangeRepository = new contactDeleteRepository();
+        this.contactDeleteRepository = new contactDeleteRepository();
 
         $.get("views/contactChange.html")
             .done((data) => this.setup(data))
@@ -14,6 +15,8 @@ class contactChangeController {
         this.contactChangeView = $(data);
 
         this.contactChangeView.find("#a").on("click", () => this.onCreateContact(event));
+
+        this.contactChangeView.find("#b").on("click", ()=> this.onDeleteContact(event));
 
         this.getContact();
         $(".content").empty().append(this.contactChangeView);
@@ -101,6 +104,41 @@ class contactChangeController {
                     }
                 }
             }
+        } catch (e) {
+            if (e.code === 401) {
+                this.contactChange
+                    .find(".error")
+                    .html(e.reason);
+            } else {
+                console.log(e);
+            }
+        }
+    }
+
+    async onDeleteContact(event) {
+        event.preventDefault();
+
+        var idContact = sessionStorage.getItem('contact');
+        try {
+
+            const id = await this.userRepository.get(sessionManager.get("username"));
+
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+            const idUser = firstReplace.replace(/\}\]/, " ");
+
+                try {
+                    await this.contactDeleteRepository.delete(idContact, idUser);
+                    alert("Dit contact is verwijdert.");
+                    app.loadController(CONTROLLER_CONTACTEN);
+                } catch (e) {
+                    if (e.code === 401) {
+                        this.contactChange
+                            .find(".error")
+                            .html(e.reason);
+                    } else {
+                        console.log(e);
+                    }
+                }
         } catch (e) {
             if (e.code === 401) {
                 this.contactChange
