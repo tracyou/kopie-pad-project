@@ -2,7 +2,7 @@ class contactChangeController {
     constructor() {
         this.userRepository = new UserRepository();
         this.contactLoadForChangeRepository = new contactLoadForChangeRepository();
-        this.contactChangeRepository = new contactDeleteRepository();
+        this.contactChangeRepository = new contactChangeRepository();
         this.contactDeleteRepository = new contactDeleteRepository();
 
         $.get("views/contactChange.html")
