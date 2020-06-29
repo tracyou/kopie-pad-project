@@ -21,17 +21,21 @@ class contactChangeController {
     }
 
     async getContact() {
-        const contactId = sessionStorage.getItem('contact');
+        var contactId = sessionStorage.getItem('contact');
 
         try {
             const contact = await this.contactLoadForChangeRepository.get(contactId);
+            console.log(contact);
 
             contact.forEach((contact) =>{
                 this.contactChangeView.find("#exampleContact").val(`${contact.name}`);
                this.contactChangeView.find("#exampleWoonplaats").val(`${contact.residence}`);
                 this.contactChangeView.find("#exampleOmschrijving").val(`${contact.description}`);
                 this.contactChangeView.find("#exampleTelefoonnummer").val(`${contact.telephoneNr}`);
-                // $("#exampleCheck1").is(':checked') ? 1 : 0 = ;
+
+                // if (contact.medical === 1){
+                // $("#exampleCheck1").val(true);
+                // }
                 // const contactQualityComputer = $("#exampleCheck2").is(':checked') ? 1 : 0;
                 // const contactQualitySocial = $("#exampleCheck3").is(':checked') ? 1 : 0;
                 // const contactQualityDriver = $("#exampleCheck4").is(':checked') ? 1 : 0;
@@ -46,15 +50,17 @@ class contactChangeController {
     async onCreateContact(event) {
         event.preventDefault();
 
-        const contactId = sessionStorage.getItem('contact');
+        var idContact = sessionStorage.getItem('contact');
+
 
         try {
-            const data = await this.contactLoadForChangeRepository.get(contactId);
 
-            console.log(data);
+            const id = await this.userRepository.get(sessionManager.get("username"));
 
-            // const contactName = this.contactChangeView.find("#exampleContact").val();
-            this.contactChangeView.getElementById('exampleContact').value = data.name;
+            const firstReplace = JSON.stringify(id).replace(/\[\{\"id\"\:/, " ");
+            const idUser = firstReplace.replace(/\}\]/, " ");
+
+            const contactName = this.contactChangeView.find("#exampleContact").val();
             const contactResidence = this.contactChangeView.find("#exampleWoonplaats").val();
             const contactDescription = this.contactChangeView.find("#exampleOmschrijving").val();
             const contactPhoneNumber = this.contactChangeView.find("#exampleTelefoonnummer").val();
@@ -77,13 +83,13 @@ class contactChangeController {
                 console.log(contactQualitySocial);
                 console.log(contactQualityDriver);
 
-                console.log(contactId);
-                console.log(userId);
+                console.log(idContact);
+                console.log(idUser);
 
                 try {
                     await this.contactChangeRepository.change(contactName, contactResidence, contactDescription,
                         contactPhoneNumber, contactQualityMedical, contactQualityComputer, contactQualitySocial,
-                        contactQualityDriver, contactId, userId);
+                        contactQualityDriver, idContact, idUser);
                     app.loadController(CONTROLLER_CONTACTEN);
                 } catch (e) {
                     if (e.code === 401) {

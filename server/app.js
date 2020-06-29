@@ -201,7 +201,7 @@ app.post("/contactChange", (req, res) => {
     const userId = req.body.userId;
 
     db.handleQuery(connectionPool, {
-            query: "UPDATE contact SET Name = contactName, Residence = contactResidence, TelephoneNr = contactPhoneNumber, canDrive = contactQualityDriver, canMeet = contactQualitySocial, Medical = contactQualityMedical, Computer = contactQualityComputer, Description = contactDescription WHERE contactId = ? AND userId =?",
+            query: "UPDATE contact SET Name = ?, Residence = ?, TelephoneNr = ?, canDrive = ?, canMeet = ?, Medical = ?, Computer = ?, Description = ? WHERE contactId = ? AND userId =?",
             values: [contactName, contactResidence, contactPhoneNumber, contactQualityDriver, contactQualitySocial, contactQualityMedical, contactQualityComputer, contactDescription, contactId, userId]
         }, (data) => {
             //just give all data back as json
@@ -214,7 +214,7 @@ app.post("/contactLoadForChange", (req, res) => {
     const contactId = req.body.contactId;
 
     db.handleQuery(connectionPool, {
-            query: "SELECT name, telephoneNr, residence, canDrive, canMeet, medical, computer FROM contact WHERE contactId = ?",
+            query: "SELECT name, telephoneNr, residence, canDrive, canMeet, medical, computer, description FROM contact WHERE contactId = ?",
             values: [contactId]
         }, (data) => {
             //just give all data back as json
