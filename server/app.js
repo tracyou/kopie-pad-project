@@ -83,17 +83,9 @@ app.post("/user/registration", (req, res) => {
         query: "INSERT INTO user (username, password) VALUES (?,?)",
         values: [username, password]
     }, (data) => {
-        if (data.length === 1) {
-            //return just the username for now, never send password back!
-            // res.status(httpOkCode).json({"username": data[0].username});
-            res.status(httpOkCode).json(data);
-            console.log("Regitration went wright")
-        } else {
-            //wrong username
-            res.status(authorizationErrCode).json({reason: "Regitration went wrong"});
-        }
-
-    }, (err) => res.status(badRequestCode).json({reason: err}));
+        //just give all data back as json
+        res.status(httpOkCode).json(data);
+    })
 });
 
 app.post("/contacts/loading", (req, res) =>{
