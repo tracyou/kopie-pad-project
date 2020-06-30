@@ -35,13 +35,6 @@ class contactChangeController {
                this.contactChangeView.find("#exampleWoonplaats").val(`${contact.residence}`);
                 this.contactChangeView.find("#exampleOmschrijving").val(`${contact.description}`);
                 this.contactChangeView.find("#exampleTelefoonnummer").val(`${contact.telephoneNr}`);
-
-                // if (contact.medical === 1){
-                // $("#exampleCheck1").val(true);
-                // }
-                // const contactQualityComputer = $("#exampleCheck2").is(':checked') ? 1 : 0;
-                // const contactQualitySocial = $("#exampleCheck3").is(':checked') ? 1 : 0;
-                // const contactQualityDriver = $("#exampleCheck4").is(':checked') ? 1 : 0;
             });
 
         } catch (e) {
