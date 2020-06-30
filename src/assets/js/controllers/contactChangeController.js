@@ -67,7 +67,9 @@ class contactChangeController {
 
             if (contactName.length === 0 || contactResidence.length === 0 ||
                 contactDescription.length === 0 || contactPhoneNumber.length === 0) {
-                alert('U heeft niet alle velden ingevuld!');
+                this.contactChangeView.find("#errorToevoegen").html("U bent iets vergeten in te voeren.");
+            } else if(contactPhoneNumber.length > 10){
+                this.contactChangeView.find("#errorToevoegen").html("U heeft geen juiste telefoonnummer ingevoerd.");
             } else {
                 console.log(contactName);
                 console.log(contactResidence);
@@ -121,7 +123,7 @@ class contactChangeController {
 
                 try {
                     await this.contactDeleteRepository.delete(idContact, idUser);
-                    alert("Dit contact is verwijdert.");
+                    alert("Het contact is verwijderd.");
                     app.loadController(CONTROLLER_CONTACTEN);
                 } catch (e) {
                     if (e.code === 401) {

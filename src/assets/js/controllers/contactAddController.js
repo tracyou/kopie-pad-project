@@ -40,8 +40,10 @@ class contactAddController {
         const contactQualityDriver = $("#exampleCheck4").is(':checked') ? 1:0 ;
 
         if (contactName.length === 0 || contactResidence.length === 0 ||
-            contactDescription.length === 0 || contactPhoneNumber.length === 0 || contactPhoneNumber.length > 10) {
-            alert('U heeft niet alle velden goed ingevuld!');
+            contactDescription.length === 0 || contactPhoneNumber.length === 0) {
+            this.contactToevoegenView.find("#errorToevoegen").html("U bent iets vergeten in te voeren.");
+        } else if(contactPhoneNumber.length > 10){
+            this.contactToevoegenView.find("#errorToevoegen").html("U heeft geen juiste telefoonnummer ingevoerd.");
         } else {
             console.log(contactName);
             console.log(contactResidence);
